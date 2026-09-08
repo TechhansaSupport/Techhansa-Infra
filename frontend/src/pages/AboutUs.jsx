@@ -27,25 +27,49 @@ export default function AboutUs() {
           </h2>
           <div className="w-full h-px bg-slate-200 mb-16"></div>
           
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-16">
-            {[
-              { name: 'Ashish Mishra', role: 'Founder and CEO' },
-              { name: 'Abhishek Mishra', role: 'Co-Founder and CTO' },
-              { name: 'Muthu Ramaiah', role: 'Managing Director Singapore' },
-              { name: 'Suman Mishra', role: 'President & Director' },
-              { name: 'Todd Roth', role: 'Vice President US Operations' },
-              { name: 'Archana Singh', role: 'Board Member' },
-              { name: 'Rajesh Singh', role: 'Board Member' }
-            ].map((director, i) => (
-              <div key={i} className="flex flex-col items-center w-56">
-                <div className="w-full aspect-[4/3] bg-slate-100 mb-4 overflow-hidden border border-slate-200 shadow-md flex items-center justify-center">
-                   {/* Placeholder for actual images */}
-                   <span className="text-muted text-sm">No Image</span>
+          <div className="flex flex-col items-center gap-y-16">
+            {/* Top Row: 4 Directors */}
+            <div className="flex flex-wrap justify-center gap-x-8 gap-y-8">
+              {[
+                { name: 'Ashish Mishra', role: 'Founder and CEO', image: '/images/directors/media_1788862298579.png' },
+                { name: 'Abhishek Mishra', role: 'Co-Founder and CTO', image: '/images/directors/media_1788862298403.png' },
+                { name: 'Muthu Ramaiah', role: 'Managing Director Singapore', image: '/images/directors/media_1788862298688.png' },
+                { name: 'Suman Mishra', role: 'President & Director', image: '/images/directors/media_1788862721987.png' }
+              ].map((director, i) => (
+                <div key={i} className="flex flex-col items-center w-44">
+                  <div className="w-full aspect-[3/4] bg-slate-100 mb-4 overflow-hidden border border-slate-200 shadow-md flex items-center justify-center rounded-xl bg-white/50 backdrop-blur-sm">
+                     {director.image ? (
+                       <img src={director.image} alt={director.name} className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" />
+                     ) : (
+                       <span className="text-muted text-sm italic">No Image</span>
+                     )}
+                  </div>
+                  <h3 className="text-[15px] font-bold text-foreground text-center">{director.name}</h3>
+                  <p className="text-emerald font-semibold text-[12px] text-center mt-1">{director.role}</p>
                 </div>
-                <h3 className="text-[17px] font-bold text-foreground text-center">{director.name}</h3>
-                <p className="text-emerald font-semibold text-[13px] text-center mt-1">{director.role}</p>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* Bottom Row: 3 Directors */}
+            <div className="flex flex-wrap justify-center gap-x-8 gap-y-8">
+              {[
+                { name: 'Todd Roth', role: 'Vice President US Operations', image: '/images/directors/media_1788862725252.png' },
+                { name: 'Archana Singh', role: 'Board Member', image: '/images/directors/media_1788862298740.png' },
+                { name: 'Rajesh Singh', role: 'Board Member', image: '/images/directors/media_1788862298521.png' }
+              ].map((director, i) => (
+                <div key={i} className="flex flex-col items-center w-44">
+                  <div className="w-full aspect-[3/4] bg-slate-100 mb-4 overflow-hidden border border-slate-200 shadow-md flex items-center justify-center rounded-xl bg-white/50 backdrop-blur-sm">
+                     {director.image ? (
+                       <img src={director.image} alt={director.name} className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" />
+                     ) : (
+                       <span className="text-muted text-sm italic">No Image</span>
+                     )}
+                  </div>
+                  <h3 className="text-[15px] font-bold text-foreground text-center">{director.name}</h3>
+                  <p className="text-emerald font-semibold text-[12px] text-center mt-1">{director.role}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
