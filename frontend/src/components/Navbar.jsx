@@ -14,14 +14,14 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-4 bg-white/70 backdrop-blur-md border-b border-gray-200">
-      <Link to="/" className="flex items-center gap-3 text-gray-900 hover:text-black transition-colors z-50">
-        <img src="/logo.png" alt="Techhansa Infra Logo" className="w-20 h-20 rounded-full object-contain shadow-sm border border-gray-100" />
-        <span className="font-title font-bold text-3xl tracking-tight text-[#d09c3a]">Techhansa Infra</span>
+    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-4 glass-nav transition-all duration-300">
+      <Link to="/" className="flex items-center gap-3 text-foreground hover:text-blue transition-colors z-50 hover-scale">
+        <img src="/logo.png" alt="Techhansa Infra Logo" className="w-20 h-20 rounded-full object-contain shadow-lg border border-slate-200" />
+        <span className="font-title font-bold text-3xl tracking-tight text-gold drop-shadow-sm">Techhansa Infra</span>
       </Link>
       
       {/* Desktop Navigation */}
-      <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+      <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted">
         {navLinks.map(link => (
           <NavLink 
             key={link.path}
@@ -29,8 +29,8 @@ export default function Navbar() {
             end={link.exact}
             className={({ isActive }) => 
               isActive 
-                ? "text-[#d09c3a] font-bold transition-colors" 
-                : "hover:text-black transition-colors"
+                ? "text-gold font-bold transition-colors" 
+                : "hover:text-gold transition-colors"
             }
           >
             {link.label}
@@ -39,12 +39,12 @@ export default function Navbar() {
       </div>
 
       <div className="hidden md:flex items-center gap-4">
-        <a href="tel:+1234567890" className="hidden lg:block text-sm font-semibold text-[#d09c3a] hover:text-black transition-colors">
+        <a href="tel:+1234567890" className="hidden lg:block text-sm font-semibold text-gold hover:text-gold-light transition-colors">
           +91 98765 43210
         </a>
         <Link 
           to="/contact"
-          className="bg-black text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors"
+          className="bg-gradient-to-r from-blue to-blue-light text-white px-6 py-2 rounded-full text-sm font-medium hover-glow transition-all"
         >
           Enquire Now
         </Link>
@@ -52,7 +52,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Button */}
       <button 
-        className="md:hidden z-50 p-2 text-gray-600 hover:text-black"
+        className="md:hidden z-50 p-2 text-muted hover:text-blue"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       >
         {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -60,11 +60,11 @@ export default function Navbar() {
 
       {/* Mobile Navigation Drawer */}
       <div 
-        className={`fixed inset-0 bg-white z-40 flex flex-col pt-32 px-8 transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed inset-0 bg-white z-40 flex flex-col pt-32 px-8 transition-transform duration-300 ease-in-out md:hidden border-l border-slate-100 ${
           isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="flex flex-col gap-6 text-xl font-medium text-gray-800">
+        <div className="flex flex-col gap-6 text-xl font-medium text-foreground">
           {navLinks.map(link => (
             <NavLink 
               key={link.path}
@@ -73,8 +73,8 @@ export default function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
               className={({ isActive }) => 
                 isActive 
-                  ? "text-[#d09c3a] font-bold" 
-                  : "hover:text-black"
+                  ? "text-gold font-bold" 
+                  : "hover:text-gold"
               }
             >
               {link.label}
@@ -82,13 +82,13 @@ export default function Navbar() {
           ))}
         </div>
         <div className="mt-auto pb-12 flex flex-col gap-4">
-          <a href="tel:+1234567890" className="text-center text-lg font-semibold text-[#d09c3a]">
+          <a href="tel:+1234567890" className="text-center text-lg font-semibold text-gold">
             +91 98765 43210
           </a>
           <Link 
             to="/contact"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="bg-black text-white px-6 py-4 rounded-full text-center font-bold hover:bg-gray-800 transition-colors"
+            className="bg-gradient-to-r from-blue to-blue-light text-white px-6 py-4 rounded-full text-center font-bold hover-glow transition-all"
           >
             Enquire Now
           </Link>

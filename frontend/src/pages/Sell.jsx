@@ -27,33 +27,33 @@ export default function Sell() {
     }
   };
   return (
-    <section id="contact" className="bg-white text-gray-900 py-24">
+    <section id="contact" className="bg-white text-foreground py-24">
       <div className="container mx-auto px-8">
-        <div className="bg-gradient-to-r from-gray-50 to-white border border-gray-200 shadow-sm rounded-3xl p-12 lg:p-20 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#f0c05a] opacity-20 blur-[100px] rounded-full" />
+        <div className="bg-slate-50 border border-slate-200 shadow-lg rounded-3xl p-12 lg:p-20 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-blue opacity-10 blur-[100px] rounded-full" />
           
           <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6">Experience Luxury Living.</h2>
-              <p className="text-lg text-gray-600 mb-8 max-w-md">
+              <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue drop-shadow-sm">Experience Luxury Living.</h2>
+              <p className="text-lg text-muted mb-8 max-w-md">
                 Discover our portfolio of premium residential and commercial spaces. Leave your details below and our property advisors will get in touch with you.
               </p>
               <ul className="space-y-4 mb-8">
-                <li className="flex items-center gap-3 text-gray-700">
-                  <div className="w-2 h-2 rounded-full bg-[#d09c3a]" /> Exclusive Preview Access
+                <li className="flex items-center gap-3 text-foreground">
+                  <div className="w-2 h-2 rounded-full bg-blue shadow-[0_0_8px_rgba(14,165,233,0.3)]" /> Exclusive Preview Access
                 </li>
-                <li className="flex items-center gap-3 text-gray-700">
-                  <div className="w-2 h-2 rounded-full bg-[#d09c3a]" /> Guided Site Visits
+                <li className="flex items-center gap-3 text-foreground">
+                  <div className="w-2 h-2 rounded-full bg-blue shadow-[0_0_8px_rgba(14,165,233,0.3)]" /> Guided Site Visits
                 </li>
-                <li className="flex items-center gap-3 text-gray-700">
-                  <div className="w-2 h-2 rounded-full bg-[#d09c3a]" /> Dedicated Relationship Manager
+                <li className="flex items-center gap-3 text-foreground">
+                  <div className="w-2 h-2 rounded-full bg-blue shadow-[0_0_8px_rgba(14,165,233,0.3)]" /> Dedicated Relationship Manager
                 </li>
               </ul>
             </div>
-            <div className="bg-white border border-gray-200 shadow-lg rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-6">Register Your Interest</h3>
+            <div className="bg-white/90 backdrop-blur-sm border border-slate-200 shadow-xl rounded-2xl p-8">
+              <h3 className="text-2xl font-bold mb-6 text-foreground">Register Your Interest</h3>
               {submitStatus === 'success' ? (
-                <div className="bg-green-50 border border-green-200 text-green-700 p-6 rounded-2xl text-center">
+                <div className="bg-emerald-100 border border-emerald-200 text-emerald-600 p-6 rounded-2xl text-center">
                   <h4 className="text-xl font-bold mb-2">Request Received!</h4>
                   <p>Our property advisors will contact you within 24 hours.</p>
                 </div>
@@ -65,7 +65,7 @@ export default function Sell() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:outline-none focus:border-[#d09c3a]" 
+                    className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue" 
                   />
                   <input 
                     type="tel" 
@@ -73,25 +73,25 @@ export default function Sell() {
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:outline-none focus:border-[#d09c3a]" 
+                    className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue" 
                   />
                   <input 
                     type="email" 
                     placeholder="Email Address (Optional)" 
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:outline-none focus:border-[#d09c3a]" 
+                    className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue" 
                   />
                   <select 
                     required
                     value={formData.propertyType}
                     onChange={(e) => setFormData({...formData, propertyType: e.target.value})}
-                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:outline-none focus:border-[#d09c3a] appearance-none"
+                    className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue appearance-none"
                   >
-                    <option value="" disabled>Interest Type</option>
-                    <option value="residential">Residential</option>
-                    <option value="commercial">Commercial</option>
-                    <option value="retail">Retail</option>
+                    <option value="" disabled className="bg-white text-foreground">Interest Type</option>
+                    <option value="residential" className="bg-white text-foreground">Residential</option>
+                    <option value="commercial" className="bg-white text-foreground">Commercial</option>
+                    <option value="retail" className="bg-white text-foreground">Retail</option>
                   </select>
 
                   {submitStatus === 'error' && (
@@ -101,7 +101,7 @@ export default function Sell() {
                   <button 
                     type="submit"
                     disabled={submitStatus === 'loading'}
-                    className="w-full bg-[#f0c05a] text-black font-bold text-lg rounded-xl py-4 hover:bg-[#e0b04a] transition-colors mt-2 disabled:opacity-50"
+                    className="w-full bg-gradient-to-r from-blue to-blue-light text-white font-bold text-lg rounded-xl py-4 hover-glow transition-colors mt-2 disabled:opacity-50"
                   >
                     {submitStatus === 'loading' ? 'Submitting...' : 'Submit Details'}
                   </button>

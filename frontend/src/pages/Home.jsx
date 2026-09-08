@@ -6,7 +6,7 @@ import Milestones from '../components/Milestones';
 
 export default function Home() {
   return (
-    <div className="bg-gray-50 text-gray-900">
+    <div className="text-foreground">
       <Navbar />
       <Hero />
       <FeaturedProjects />
