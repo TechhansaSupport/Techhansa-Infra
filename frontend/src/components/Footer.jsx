@@ -80,9 +80,10 @@ export default function Footer() {
         
         <div className="pt-8 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4 text-muted text-sm">
           <p>&copy; {new Date().getFullYear()} Techhansa Infra. All rights reserved.</p>
-          <div className="flex gap-6">
+          <div className="flex items-center gap-6">
             <Link to="/privacy-policy" className="hover:text-blue transition-colors">Privacy Policy</Link>
             <Link to="/disclaimer" className="hover:text-blue transition-colors">Terms of Service</Link>
+            <Link to="/admin" className="ml-2 px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded text-xs font-semibold transition-colors border border-slate-200">Admin Panel</Link>
           </div>
         </div>
       </div>

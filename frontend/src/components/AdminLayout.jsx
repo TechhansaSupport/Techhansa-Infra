@@ -1,8 +1,25 @@
-import React from 'react';
-import { Outlet, Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Outlet, Navigate, useNavigate } from 'react-router-dom';
 
 export default function AdminLayout() {
-  const isAuthenticated = localStorage.getItem('adminToken') === 'techhansa2026';
+  const navigate = useNavigate();
+  // Check if token exists. In a real app, you'd also verify its validity with the backend or decode it
+  const isAuthenticated = !!localStorage.getItem('adminToken');
+
+  useEffect(() => {
+    const originalFetch = window.fetch;
+    window.fetch = async function () {
+      const response = await originalFetch.apply(this, arguments);
+      if (response.status === 401 && window.location.pathname.startsWith('/admin')) {
+        localStorage.removeItem('adminToken');
+        navigate('/admin/login', { replace: true });
+      }
+      return response;
+    };
+    return () => {
+      window.fetch = originalFetch;
+    };
+  }, [navigate]);
 
   if (!isAuthenticated) {
     return <Navigate to="/admin/login" replace />;
@@ -20,7 +37,10 @@ export default function AdminLayout() {
 
       {/* Admin Navbar (Glassmorphism) */}
       <header className="sticky top-0 z-50 glass-panel border-b border-white/20 py-4 px-8 flex justify-between items-center shadow-sm">
-        <h1 className="text-2xl font-bold tracking-tight text-foreground">Techhansa <span className="text-gold font-light">Admin</span></h1>
+        <div className="flex items-center gap-3">
+          <img src="/logo.png" alt="Techhansa Infra Logo" className="w-16 h-16 rounded-full object-contain shadow-md border border-slate-200" />
+          <span className="font-title font-bold text-2xl tracking-tight text-gold drop-shadow-sm">Techhansa Infra <span className="text-muted text-lg font-medium ml-2">Admin Panel</span></span>
+        </div>
         <button 
           onClick={() => {
             localStorage.removeItem('adminToken');

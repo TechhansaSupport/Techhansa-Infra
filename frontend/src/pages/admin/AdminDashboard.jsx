@@ -28,7 +28,7 @@ export default function AdminDashboard() {
       const res = await fetch(`http://localhost:5000/api/projects/${id}`, {
         method: 'DELETE',
         headers: {
-          'Authorization': 'Bearer techhansa2026'
+          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
         }
       });
       if (res.ok) {

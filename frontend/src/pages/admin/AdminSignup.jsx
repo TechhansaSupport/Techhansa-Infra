@@ -1,56 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 
-export default function AdminLogin() {
+export default function AdminSignup() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
     
-    // Fallback to form values in case browser autofill didn't trigger React state updates
-    const finalEmail = email || e.target.elements.email?.value || '';
-    const finalPassword = password || e.target.elements.password?.value || '';
-
     setError('');
+    setSuccess('');
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch('http://localhost:5000/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: finalEmail, password: finalPassword, rememberMe })
+        body: JSON.stringify({ name, email, password })
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        // Real JWT token from the backend
-        localStorage.setItem('adminToken', data.token);
-        navigate('/admin');
+        setSuccess('Account created successfully! Redirecting to login...');
+        setTimeout(() => navigate('/admin/login'), 2000);
       } else {
-        setError(data.message || 'Invalid credentials');
+        setError(data.message || 'Registration failed');
       }
     } catch (err) {
-      console.error('Login Error:', err);
+      console.error('Signup Error:', err);
       setError('Unable to connect to the server. Please try again later.');
     } finally {
       setLoading(false);
     }
   };
-
-  // Basic check for existing token (in a real app, verify the token via API)
-  useEffect(() => {
-    if (localStorage.getItem('adminToken')) {
-      navigate('/admin');
-    }
-  }, [navigate]);
 
   return (
     <div className="h-screen bg-white text-foreground flex items-center justify-center p-4 overflow-hidden relative">
@@ -75,7 +65,7 @@ export default function AdminLogin() {
           </div>
 
           <div className="mb-6">
-            <h1 className="font-title text-[32px] md:text-[36px] font-bold text-gray-900 mb-1 leading-tight tracking-tight">Welcome Back</h1>
+            <h1 className="font-title text-[32px] md:text-[36px] font-bold text-gray-900 mb-1 leading-tight tracking-tight">Create Account</h1>
           </div>
 
           {error && (
@@ -83,10 +73,28 @@ export default function AdminLogin() {
               {error}
             </div>
           )}
+          {success && (
+            <div className="mb-4 p-3 bg-emerald/10 text-emerald-600 text-sm rounded-lg border border-emerald/20 font-medium">
+              {success}
+            </div>
+          )}
 
           {/* Form */}
-          <form onSubmit={handleLogin} className="space-y-3">
+          <form onSubmit={handleSignup} className="space-y-3">
             
+            <div className="bg-[#f5f6f8] rounded-xl px-4 py-2.5 border border-transparent focus-within:border-gray-200 focus-within:bg-white transition-colors">
+              <label className="block text-[11px] font-bold text-gray-400 mb-0.5">Full Name</label>
+              <input 
+                name="name"
+                type="text" 
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Admin Name" 
+                required
+                className="w-full bg-transparent border-none p-0 text-sm font-bold text-gray-900 focus:ring-0 placeholder:text-gray-400 placeholder:font-medium"
+              />
+            </div>
+
             <div className="bg-[#f5f6f8] rounded-xl px-4 py-2.5 border border-transparent focus-within:border-gray-200 focus-within:bg-white transition-colors">
               <label className="block text-[11px] font-bold text-gray-400 mb-0.5">Email</label>
               <input 
@@ -120,31 +128,18 @@ export default function AdminLogin() {
               </button>
             </div>
 
-            <div className="flex items-center justify-between pt-2 pb-4">
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input 
-                  type="checkbox" 
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                  className="w-4 h-4 rounded border-gray-300 text-[#0ea5e9] focus:ring-[#0ea5e9] cursor-pointer"
-                />
-                <span className="text-[13px] font-bold text-gray-900">Remember me</span>
-              </label>
-              <Link to="/admin/reset-password" className="text-[13px] font-bold text-gray-900 hover:underline">Forgot Password?</Link>
-            </div>
-
             <button 
               type="submit" 
               disabled={loading}
-              className="w-full bg-[#0ea5e9] text-white rounded-xl py-3.5 text-sm font-bold hover:bg-[#0284c7] transition-colors shadow-md mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full bg-[#0ea5e9] text-white rounded-xl py-3.5 text-sm font-bold hover:bg-[#0284c7] transition-colors shadow-md mt-6 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              {loading ? 'Logging in...' : 'Login'}
+              {loading ? 'Creating Account...' : 'Sign Up'}
             </button>
 
           </form>
 
           <p className="text-center text-[13px] font-bold text-gray-900 mt-5">
-            Don't have an account? <Link to="/admin/signup" className="text-gray-500 hover:text-gray-900 transition-colors ml-1">Sign Up</Link>
+            Already have an account? <Link to="/admin/login" className="text-gray-500 hover:text-gray-900 transition-colors ml-1">Login</Link>
           </p>
 
         </div>

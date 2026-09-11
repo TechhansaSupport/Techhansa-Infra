@@ -39,8 +39,8 @@ export default function Navbar() {
       </div>
 
       <div className="hidden md:flex items-center gap-4">
-        <a href="tel:+1234567890" className="hidden lg:block text-sm font-semibold text-gold hover:text-gold-light transition-colors">
-          +91 98765 43210
+        <a href="tel:+919711888951" className="hidden lg:block text-sm font-semibold text-gold hover:text-gold-light transition-colors">
+          +91 9711888951
         </a>
         <Link 
           to="/contact"
@@ -82,8 +82,8 @@ export default function Navbar() {
           ))}
         </div>
         <div className="mt-auto pb-12 flex flex-col gap-4">
-          <a href="tel:+1234567890" className="text-center text-lg font-semibold text-gold">
-            +91 98765 43210
+          <a href="tel:+919711888951" className="text-center text-lg font-semibold text-gold">
+            +91 9711888951
           </a>
           <Link 
             to="/contact"

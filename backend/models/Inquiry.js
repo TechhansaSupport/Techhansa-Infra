@@ -9,6 +9,7 @@ const inquirySchema = new mongoose.Schema({
   propertyType: { type: String },
   status: { type: String, enum: ['New', 'Contacted', 'Qualified', 'Lost'], default: 'New' },
   sourceChannel: { type: String },
+  message: { type: String },
   createdAt: { type: Date, default: Date.now }
 });
 

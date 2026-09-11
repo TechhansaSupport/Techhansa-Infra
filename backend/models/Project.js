@@ -24,6 +24,7 @@ const projectSchema = new mongoose.Schema({
     enum: ['Completed', 'Ongoing', 'Future', 'New Launch'],
     default: 'Future'
   },
+  isFeatured: { type: Boolean, default: false },
   propertyType: {
     type: String,
     enum: ['Residential', 'Commercial', 'Plots'],

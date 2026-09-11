@@ -36,8 +36,8 @@ export default function AboutUs() {
                 { name: 'Muthu Ramaiah', role: 'Managing Director Singapore', image: '/images/directors/media_1788862298688.png' },
                 { name: 'Suman Mishra', role: 'President & Director', image: '/images/directors/media_1788862721987.png' }
               ].map((director, i) => (
-                <div key={i} className="flex flex-col items-center w-44">
-                  <div className="w-full aspect-[3/4] bg-slate-100 mb-4 overflow-hidden border border-slate-200 shadow-md flex items-center justify-center rounded-xl bg-white/50 backdrop-blur-sm">
+                <div key={i} className="flex flex-col items-center w-36">
+                  <div className="w-full aspect-square bg-slate-100 mb-4 overflow-hidden border border-slate-200 shadow-md flex items-center justify-center rounded-xl bg-white/50 backdrop-blur-sm">
                      {director.image ? (
                        <img src={director.image} alt={director.name} className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" />
                      ) : (
@@ -57,8 +57,8 @@ export default function AboutUs() {
                 { name: 'Archana Singh', role: 'Board Member', image: '/images/directors/media_1788862298740.png' },
                 { name: 'Rajesh Singh', role: 'Board Member', image: '/images/directors/media_1788862298521.png' }
               ].map((director, i) => (
-                <div key={i} className="flex flex-col items-center w-44">
-                  <div className="w-full aspect-[3/4] bg-slate-100 mb-4 overflow-hidden border border-slate-200 shadow-md flex items-center justify-center rounded-xl bg-white/50 backdrop-blur-sm">
+                <div key={i} className="flex flex-col items-center w-36">
+                  <div className="w-full aspect-square bg-slate-100 mb-4 overflow-hidden border border-slate-200 shadow-md flex items-center justify-center rounded-xl bg-white/50 backdrop-blur-sm">
                      {director.image ? (
                        <img src={director.image} alt={director.name} className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" />
                      ) : (

@@ -1,4 +1,5 @@
 const Project = require('../models/Project');
+const mongoose = require('mongoose');
 
 // Get all projects
 exports.getProjects = async (req, res) => {

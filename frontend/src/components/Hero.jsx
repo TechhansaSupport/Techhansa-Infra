@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUpRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ArrowUpRight, MapPin } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Hero() {
+  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [properties, setProperties] = useState([]);
+  
+  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedType, setSelectedType] = useState('');
+  const [selectedBudget, setSelectedBudget] = useState('');
+  const [apiError, setApiError] = useState(false);
 
   const dummyProperties = [
     {
@@ -32,10 +38,15 @@ export default function Hero() {
 
   useEffect(() => {
     fetch('http://localhost:5000/api/projects')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('API request failed');
+        return res.json();
+      })
       .then(data => {
         if (data && data.length > 0) {
-          setProperties(data);
+          const featured = data.filter(p => p.isFeatured);
+          setProperties(featured.length > 0 ? featured : data.slice(0, 5));
+          setApiError(false);
         } else {
           setProperties(dummyProperties);
         }
@@ -43,6 +54,7 @@ export default function Hero() {
       .catch(err => {
         console.error(err);
         setProperties(dummyProperties);
+        setApiError(true);
       });
   }, []);
 
@@ -73,31 +85,57 @@ export default function Hero() {
 
         {/* Left Content */}
         <div className="max-w-2xl text-foreground animate-fade-in">
-          <h1 className="text-6xl md:text-7xl font-bold leading-tight mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-emerald to-emerald-light drop-shadow-[0_4px_12px_rgba(16,185,129,0.3)]">
-            WE BUILD THE <br className="hidden md:block" /> FUTURE REAL ESTATE
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-emerald to-emerald-light drop-shadow-[0_4px_12px_rgba(16,185,129,0.3)]">
+            WE BUILD THE <br /> FUTURE <br /> REAL ESTATE
           </h1>
           <p className="text-muted text-xl max-w-xl leading-relaxed border-l-4 border-gold pl-6 py-1 mb-10">
             Discover a curated portfolio of premium residential and commercial developments designed for the modern visionary. At Techhansa Infra, we bring decades of excellence in crafting sustainable, ultra-luxury spaces that redefine urban living.
           </p>
 
+          {apiError && (
+            <div className="bg-red-500/10 border border-red-500/30 text-red-500 px-4 py-2 rounded-lg text-sm font-medium mb-6 inline-block shadow-sm">
+              ⚠ Cannot connect to database. Showing offline preview data.
+            </div>
+          )}
+
           <div className="glass-panel p-4 rounded-3xl flex flex-col md:flex-row gap-4 max-w-3xl animate-slide-up">
-            <select className="flex-1 bg-white border border-slate-200 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue transition-all">
+            <select 
+              value={selectedCity} onChange={e => setSelectedCity(e.target.value)}
+              className="flex-1 bg-white border border-slate-200 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue transition-all"
+            >
               <option value="">Select City</option>
-              <option value="new-york">New York</option>
-              <option value="dubai">Dubai</option>
-              <option value="california">California</option>
+              {[...new Set(properties.map(p => p.city).filter(Boolean))].map(city => (
+                <option key={city} value={city}>{city}</option>
+              ))}
             </select>
-            <select className="flex-1 bg-white border border-slate-200 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue transition-all">
+            <select 
+              value={selectedType} onChange={e => setSelectedType(e.target.value)}
+              className="flex-1 bg-white border border-slate-200 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue transition-all"
+            >
               <option value="">Property Type</option>
-              <option value="residential">Residential</option>
-              <option value="commercial">Commercial</option>
+              {[...new Set(properties.map(p => p.propertyType).filter(Boolean))].map(type => (
+                <option key={type} value={type}>{type}</option>
+              ))}
             </select>
-            <select className="flex-1 bg-white border border-slate-200 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue transition-all">
+            <select 
+              value={selectedBudget} onChange={e => setSelectedBudget(e.target.value)}
+              className="flex-1 bg-white border border-slate-200 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue transition-all"
+            >
               <option value="">Budget</option>
-              <option value="1M-5M">$1M - $5M</option>
-              <option value="5M+">$5M+</option>
+              <option value="Under 1Cr">Under ₹1 Cr</option>
+              <option value="1Cr-5Cr">₹1 Cr - ₹5 Cr</option>
+              <option value="5Cr+">₹5 Cr+</option>
             </select>
-            <button className="bg-gradient-to-r from-blue to-blue-light text-white px-8 py-3 rounded-xl font-bold hover-glow transition-all whitespace-nowrap">
+            <button 
+              onClick={() => {
+                const params = new URLSearchParams();
+                if (selectedCity) params.append('city', selectedCity);
+                if (selectedType) params.append('type', selectedType);
+                if (selectedBudget) params.append('budget', selectedBudget);
+                navigate(`/projects?${params.toString()}`);
+              }}
+              className="bg-gradient-to-r from-blue to-blue-light text-white px-8 py-3 rounded-xl font-bold hover-glow transition-all whitespace-nowrap"
+            >
               Find Home
             </button>
           </div>
@@ -127,7 +165,7 @@ export default function Hero() {
         </div>
 
         {/* Right Content - Property Card */}
-        <div className="hidden lg:block relative w-[400px] h-[500px] -mt-32 rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] bg-transparent">
+        <div className="hidden lg:block relative w-[400px] h-[460px] -mt-48 rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] bg-transparent">
           {properties.map((property, index) => {
             let positionClass = 'opacity-0 scale-95 translate-x-16 pointer-events-none z-0';
             if (index === currentIndex) {
@@ -139,27 +177,34 @@ export default function Hero() {
             return (
               <div
                 key={property._id}
-                className={`absolute inset-0 glass-panel p-4 flex flex-col gap-4 rounded-[2rem] transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] ${positionClass}`}
+                className={`absolute inset-0 bg-white rounded-[2rem] shadow-[0_20px_40px_rgba(0,0,0,0.08)] border border-slate-100 flex flex-col overflow-hidden transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] ${positionClass}`}
               >
-                <div className="relative w-full h-[280px] rounded-[1.5rem] overflow-hidden bg-slate-100">
+                {/* Image Section */}
+                <div className="relative w-full h-[55%] overflow-hidden bg-slate-100 group">
                   <img
                     src={property.coverImage || property.image || '/images/modern-property-light.jpg'}
                     alt={property.name}
                     className={`w-full h-full object-cover transition-transform duration-[6000ms] ease-linear ${index === currentIndex ? 'scale-110' : 'scale-100'}`}
                   />
-                </div>
-                <div className="px-2 pb-2 relative z-20">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-8 h-8 rounded-full overflow-hidden relative shadow-[0_0_10px_rgba(212,175,55,0.3)]">
-                      {/* Avatar placeholder */}
-                      <div className="absolute inset-0 bg-gradient-to-tr from-gold to-gold-light" />
-                    </div>
-                    <span className="font-semibold text-sm text-foreground">{property.agent || 'Techhansa Agent'}</span>
+                  {/* Status Badge */}
+                  <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm text-blue px-3 py-1.5 text-xs font-bold rounded-full shadow-sm border border-white">
+                    {property.status || 'Premium'}
                   </div>
-                  <h4 className="font-bold text-xl mb-1 truncate text-gold">{property.name}</h4>
-                  <p className="text-muted text-sm mb-6 truncate">{property.location}</p>
-                  <Link to={`/projects/${property._id}`} className="bg-gradient-to-r from-blue to-blue-light text-white px-6 py-3 rounded-full text-sm font-medium hover-glow transition-all duration-300 w-max block text-center shadow-lg">
+                </div>
+
+                {/* Content Section */}
+                <div className="p-6 flex flex-col flex-1 justify-between bg-white relative z-10">
+                  <div>
+                    <h4 className="font-bold text-2xl mb-1.5 text-foreground truncate">{property.name}</h4>
+                    <p className="text-muted text-sm flex items-center gap-1.5 mb-4 truncate">
+                      <MapPin size={14} className="text-gold" />
+                      {property.location}
+                    </p>
+                  </div>
+
+                  <Link to={`/projects/${property._id}`} className="group/btn flex items-center justify-center gap-2 bg-gradient-to-r from-blue to-blue-light text-white px-6 py-3.5 rounded-xl font-semibold transition-all duration-300 hover:shadow-[0_8px_20px_rgba(14,165,233,0.3)] hover:-translate-y-0.5">
                     View Details
+                    <ArrowUpRight size={18} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                   </Link>
                 </div>
               </div>

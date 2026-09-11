@@ -1,39 +1,87 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
 export default function ProjectDetail() {
+  const { id } = useParams();
   const [activeTab, setActiveTab] = useState('Overview');
   const [formData, setFormData] = useState({ name: '', phone: '', email: '' });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [project, setProject] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/projects/${id}`)
+      .then(res => {
+        if (!res.ok) throw new Error('Project not found');
+        return res.json();
+      })
+      .then(data => {
+        setProject(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, [id]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Downloading Brochure for:', formData);
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: '', phone: '', email: '' });
-    }, 3000);
-  };
+    try {
+      const payload = {
+        firstName: formData.name.split(' ')[0] || formData.name,
+        lastName: formData.name.split(' ').slice(1).join(' ') || 'N/A',
+        email: formData.email,
+        phone: formData.phone,
+        subject: `Brochure Request: ${project?.name || 'Property'}`,
+        message: `Please send the brochure and pricing details for ${project?.name || 'this property'}.`
+      };
 
-  const project = {
-    name: 'Techhansa Cyber Park',
-    location: 'Sector 54, Gurgaon',
-    status: 'Ongoing',
-    rera: 'HRERA-12345',
-    overview: { acreage: '5 Acres', units: '250', concept: 'Modern Commercial Hub' },
-    pricing: [
-      { type: 'Office Space', area: '1000 sq ft', price: '₹1.5 Cr' },
-      { type: 'Retail Shop', area: '500 sq ft', price: '₹80 Lac' }
-    ],
-    amenities: ['24/7 Security', 'High-Speed Elevators', 'Food Court', 'Gymnasium'],
-    construction: [
-      { date: 'Oct 2026', desc: 'Foundation completed.' },
-      { date: 'Dec 2026', desc: 'Structure up to 5th floor.' }
-    ]
+      const res = await fetch('http://localhost:5000/api/inquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      
+      if (res.ok) {
+        setIsSubmitted(true);
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({ name: '', phone: '', email: '' });
+        }, 3000);
+      } else {
+        alert('Failed to submit inquiry. Please try again.');
+      }
+    } catch(err) {
+      console.error(err);
+      alert('Network error. Please check your connection.');
+    }
   };
 
   const tabs = ['Overview', 'Media', 'Pricing', 'Amenities', 'Construction'];
+
+  if (loading) {
+    return (
+      <div className="text-foreground min-h-screen">
+        <Navbar />
+        <div className="pt-32 pb-12 flex justify-center text-muted">Loading project details...</div>
+      </div>
+    );
+  }
+
+  if (error || !project) {
+    return (
+      <div className="text-foreground min-h-screen">
+        <Navbar />
+        <div className="pt-32 pb-12 flex flex-col items-center justify-center text-red-500 gap-4">
+          <p>{error || 'Project not found'}</p>
+          <Link to="/projects" className="text-blue hover:underline">← Back to Projects</Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="text-foreground min-h-screen">
@@ -44,16 +92,15 @@ export default function ProjectDetail() {
           <div className="flex justify-between items-start mb-6">
             <div>
               <h1 className="text-4xl font-bold mb-2 text-blue">{project.name}</h1>
-              <p className="text-muted text-lg">{project.location} | RERA: {project.rera}</p>
+              <p className="text-muted text-lg">{project.location}, {project.city} | RERA: {project.reraNumber || 'N/A'}</p>
             </div>
             <div className="bg-emerald-100 text-emerald border border-emerald-200 px-4 py-2 rounded-full font-bold text-sm shadow-md">
               {project.status}
             </div>
           </div>
           
-          {/* Main Hero Image */}
           <div className="w-full h-[500px] bg-slate-100 rounded-3xl overflow-hidden mb-8 shadow-xl">
-            <img src="/images/modern-property-light.jpg" alt="Project Hero" className="w-full h-full object-cover" />
+            <img src={project.coverImage || "/images/modern-property-light.jpg"} alt="Project Hero" className="w-full h-full object-cover" />
           </div>
 
           {/* Tabs */}
@@ -81,19 +128,19 @@ export default function ProjectDetail() {
                 <div className="grid grid-cols-3 gap-6 mb-8">
                   <div className="glass-panel p-6 rounded-2xl hover-scale text-center">
                     <p className="text-muted mb-2">Total Area</p>
-                    <p className="text-2xl font-bold text-blue">{project.overview.acreage}</p>
+                    <p className="text-2xl font-bold text-blue">{project.overview?.acreage || 'N/A'}</p>
                   </div>
                   <div className="glass-panel p-6 rounded-2xl hover-scale text-center">
                     <p className="text-muted mb-2">Total Units</p>
-                    <p className="text-2xl font-bold text-blue">{project.overview.units}</p>
+                    <p className="text-2xl font-bold text-blue">{project.overview?.units || 'N/A'}</p>
                   </div>
                   <div className="glass-panel p-6 rounded-2xl hover-scale text-center">
                     <p className="text-muted mb-2">Concept</p>
-                    <p className="text-xl font-bold text-blue">{project.overview.concept}</p>
+                    <p className="text-xl font-bold text-blue">{project.overview?.architecturalConcept || 'Modern'}</p>
                   </div>
                 </div>
                 <p className="text-muted leading-relaxed">
-                  Techhansa Cyber Park offers an unparalleled business environment in the heart of Gurgaon. Designed for maximum efficiency and aesthetic brilliance.
+                  {project.description || 'Experience unparalleled living and business environment designed for maximum efficiency and aesthetic brilliance.'}
                 </p>
               </div>
             )}
@@ -102,11 +149,13 @@ export default function ProjectDetail() {
               <div>
                 <h2 className="text-2xl font-bold mb-4">Media Gallery</h2>
                 <div className="grid grid-cols-2 gap-4">
-                  {[1, 2, 3, 4].map(i => (
-                    <div key={i} className="h-48 bg-slate-100 rounded-xl overflow-hidden shadow-md">
-                       <img src="/images/modern-property-light.jpg" alt="Gallery" className="w-full h-full object-cover" />
+                  {project.gallery?.length > 0 ? project.gallery.map((image, i) => (
+                    <div key={i} className="h-48 bg-slate-100 rounded-xl overflow-hidden shadow-md hover-glow transition-all cursor-pointer">
+                       <img src={image} alt={`Gallery ${i+1}`} className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
                     </div>
-                  ))}
+                  )) : (
+                    <p className="col-span-2 text-muted">No media available.</p>
+                  )}
                 </div>
               </div>
             )}
@@ -125,14 +174,24 @@ export default function ProjectDetail() {
                       </tr>
                     </thead>
                     <tbody>
-                      {project.pricing.map((p, i) => (
+                      {project.pricing?.length > 0 ? project.pricing.map((p, i) => (
                         <tr key={i} className="border-b border-slate-200 last:border-0 hover:bg-slate-50 transition-colors">
-                          <td className="p-4 font-medium text-foreground">{p.type}</td>
+                          <td className="p-4 font-medium text-foreground">{p.unitType}</td>
                           <td className="p-4 text-muted">{p.area}</td>
-                          <td className="p-4 font-bold text-blue">{p.price}</td>
-                          <td className="p-4"><button className="text-emerald font-bold hover:underline">Floor Plan</button></td>
+                          <td className="p-4 font-bold text-blue">{p.startingPrice}</td>
+                          <td className="p-4">
+                            {p.floorPlan ? (
+                              <a href={p.floorPlan} target="_blank" rel="noreferrer" className="text-emerald font-bold hover:underline">Floor Plan</a>
+                            ) : (
+                              <span className="text-muted text-sm">N/A</span>
+                            )}
+                          </td>
                         </tr>
-                      ))}
+                      )) : (
+                        <tr>
+                          <td colSpan="4" className="p-4 text-center text-muted">Pricing details coming soon.</td>
+                        </tr>
+                      )}
                     </tbody>
                   </table>
                 </div>
@@ -143,12 +202,14 @@ export default function ProjectDetail() {
               <div>
                 <h2 className="text-2xl font-bold mb-4">Amenities</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                  {project.amenities.map((amenity, i) => (
+                  {project.amenities?.length > 0 ? project.amenities.map((amenity, i) => (
                     <div key={i} className="glass-panel p-4 rounded-xl flex items-center gap-3 hover-scale">
                       <div className="w-2 h-2 rounded-full bg-blue shadow-[0_0_8px_rgba(14,165,233,0.3)]"></div>
                       <span className="font-medium text-foreground">{amenity}</span>
                     </div>
-                  ))}
+                  )) : (
+                    <p className="col-span-full text-muted">Amenities coming soon.</p>
+                  )}
                 </div>
               </div>
             )}
@@ -157,13 +218,15 @@ export default function ProjectDetail() {
               <div>
                 <h2 className="text-2xl font-bold mb-6">Construction Updates</h2>
                 <div className="space-y-8 pl-4 border-l-2 border-blue">
-                  {project.construction.map((update, i) => (
+                  {project.constructionUpdates?.length > 0 ? project.constructionUpdates.map((update, i) => (
                     <div key={i} className="relative">
                       <div className="absolute -left-[25px] top-1 w-4 h-4 bg-white border-4 border-blue rounded-full shadow-[0_0_8px_rgba(14,165,233,0.3)]"></div>
-                      <h3 className="font-bold text-lg mb-1 text-blue">{update.date}</h3>
-                      <p className="text-muted">{update.desc}</p>
+                      <h3 className="font-bold text-lg mb-1 text-blue">{update.monthYear}</h3>
+                      <p className="text-muted">{update.description}</p>
                     </div>
-                  ))}
+                  )) : (
+                    <p className="text-muted">No construction updates posted yet.</p>
+                  )}
                 </div>
               </div>
             )}

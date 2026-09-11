@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -10,24 +11,33 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/techha
 app.use(cors());
 app.use(express.json());
 
+// Serve static files from the uploads directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 // Routes
 app.get('/', (req, res) => {
   res.send('Techhansa Infra API is running');
 });
 const inquiryRoutes = require('./routes/inquiryRoutes');
 const projectRoutes = require('./routes/projectRoutes');
+const authRoutes = require('./routes/authRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
 
 app.use('/api/inquiries', inquiryRoutes);
 app.use('/api/projects', projectRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/upload', uploadRoutes);
 
 // Connect to MongoDB
 mongoose.connect(MONGODB_URI)
   .then(() => {
     console.log('Connected to MongoDB');
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
-    });
   })
   .catch((err) => {
-    console.error('Failed to connect to MongoDB', err);
+    console.error('Failed to connect to MongoDB (Make sure your local MongoDB instance is running!)');
+    console.error(err.message);
   });
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

@@ -23,6 +23,17 @@
   --animate-fade-in: fade-in 0.8s ease-out;
   --animate-slide-up: slide-up 0.8s ease-out;
   --animate-slow-zoom: slow-zoom 20s ease-in-out infinite alternate;
+  --animate-shimmer: shimmer 1.5s infinite;
+  --animate-slow-spin: slow-spin 60s linear infinite;
+}
+
+@keyframes slow-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(200%); }
 }
 
 body {
