@@ -3,10 +3,10 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 
 export default function AdminLogin() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState(localStorage.getItem('rememberedAdminEmail') || '');
+  const [password, setPassword] = useState(localStorage.getItem('rememberedAdminPassword') || '');
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
+  const [rememberMe, setRememberMe] = useState(!!localStorage.getItem('rememberedAdminEmail'));
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -31,6 +31,14 @@ export default function AdminLogin() {
       const data = await response.json();
 
       if (response.ok) {
+        if (rememberMe) {
+          localStorage.setItem('rememberedAdminEmail', finalEmail);
+          localStorage.setItem('rememberedAdminPassword', finalPassword); // Note: Storing plaintext password in localStorage is not recommended for production
+        } else {
+          localStorage.removeItem('rememberedAdminEmail');
+          localStorage.removeItem('rememberedAdminPassword');
+        }
+        
         // Real JWT token from the backend
         localStorage.setItem('adminToken', data.token);
         navigate('/admin');
@@ -142,10 +150,6 @@ export default function AdminLogin() {
             </button>
 
           </form>
-
-          <p className="text-center text-[13px] font-bold text-gray-900 mt-5">
-            Don't have an account? <Link to="/admin/signup" className="text-gray-500 hover:text-gray-900 transition-colors ml-1">Sign Up</Link>
-          </p>
 
         </div>
 
