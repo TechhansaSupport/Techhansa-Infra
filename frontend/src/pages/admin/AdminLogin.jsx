@@ -96,7 +96,7 @@ export default function AdminLogin() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="admin@techhansa.com" 
                 required
-                className="w-full bg-transparent border-none p-0 text-sm font-bold text-gray-900 focus:ring-0 placeholder:text-gray-400 placeholder:font-medium"
+                className="w-full bg-transparent border-none p-0 text-sm font-bold text-gray-900 focus:outline-none focus:ring-0 placeholder:text-gray-400 placeholder:font-medium"
               />
             </div>
 
@@ -109,7 +109,7 @@ export default function AdminLogin() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••••••" 
                 required
-                className="w-full bg-transparent border-none p-0 text-lg font-bold text-gray-900 focus:ring-0 pr-10 translate-y-1 placeholder:text-gray-400 placeholder:font-medium"
+                className="w-full bg-transparent border-none p-0 text-lg font-bold text-gray-900 focus:outline-none focus:ring-0 pr-10 translate-y-1 placeholder:text-gray-400 placeholder:font-medium"
               />
               <button 
                 type="button" 
