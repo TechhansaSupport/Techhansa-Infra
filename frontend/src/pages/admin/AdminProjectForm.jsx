@@ -179,7 +179,12 @@ export default function AdminProjectForm() {
 
   return (
     <div className="container mx-auto max-w-4xl glass-panel p-10 rounded-3xl shadow-sm border border-white/40 relative z-10">
-      <h2 className="text-4xl font-bold mb-8 text-foreground">{isEditing ? 'Edit Project' : 'Add New Project'}</h2>
+      <div className="flex items-center gap-4 mb-8">
+        <button onClick={() => navigate('/admin')} type="button" className="p-2 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors flex items-center justify-center" title="Go Back">
+          <svg className="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+        </button>
+        <h2 className="text-4xl font-bold text-foreground m-0">{isEditing ? 'Edit Project' : 'Add New Project'}</h2>
+      </div>
       
       <form onSubmit={handleSubmit} className="space-y-10">
         {/* Basic Details */}

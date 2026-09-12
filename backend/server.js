@@ -22,11 +22,13 @@ const inquiryRoutes = require('./routes/inquiryRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const authRoutes = require('./routes/authRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
+const announcementRoutes = require('./routes/announcementRoutes');
 
 app.use('/api/inquiries', inquiryRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/upload', uploadRoutes);
+app.use('/api/announcement', announcementRoutes);
 
 // Connect to MongoDB
 mongoose.connect(MONGODB_URI)

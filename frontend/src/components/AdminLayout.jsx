@@ -39,7 +39,11 @@ export default function AdminLayout() {
       <header className="sticky top-0 z-50 glass-panel border-b border-white/20 py-4 px-8 flex justify-between items-center shadow-sm">
         <div className="flex items-center gap-3">
           <img src="/logo.png" alt="Techhansa Infra Logo" className="w-16 h-16 rounded-full object-contain shadow-md border border-slate-200" />
-          <span className="font-title font-bold text-2xl tracking-tight text-gold drop-shadow-sm">Techhansa Infra <span className="text-muted text-lg font-medium ml-2">Admin Panel</span></span>
+          <span className="font-title font-bold text-2xl tracking-tight text-gold drop-shadow-sm mr-8">Techhansa Infra <span className="text-muted text-lg font-medium ml-2">Admin Panel</span></span>
+          <nav className="flex gap-4 border-l border-slate-200 pl-8">
+            <a href="/admin" className="text-sm font-semibold text-foreground hover:text-blue transition-colors">Projects</a>
+            <a href="/admin/announcement" className="text-sm font-semibold text-foreground hover:text-blue transition-colors">Announcements</a>
+          </nav>
         </div>
         <button 
           onClick={() => {

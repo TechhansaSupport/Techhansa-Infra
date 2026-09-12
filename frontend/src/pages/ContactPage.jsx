@@ -140,11 +140,11 @@ export default function ContactPage() {
           <h2 className="text-4xl font-bold text-foreground">Offices & Support</h2>
         </div>
 
-        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mb-16">
           {/* Corporate Office */}
           <div className="glass-panel p-8 rounded-3xl hover:-translate-y-1 transition-transform">
             <h4 className="text-xs font-bold text-muted uppercase tracking-wider mb-1">Corporate Office</h4>
-            <h3 className="text-xl font-bold text-foreground mb-4">Techhansa Technology</h3>
+            <h3 className="text-xl font-bold text-foreground mb-4">Techhansa Infra</h3>
             <p className="text-muted text-sm mb-4">A3-401, The Plaza at 106, Sector 106, Gurgaon, Haryana 122006</p>
             <p className="text-blue text-sm font-medium mb-1">+91 9711888951</p>
             <p className="text-blue text-sm font-medium">sales@techhansa.com</p>
@@ -153,20 +153,12 @@ export default function ContactPage() {
           {/* Head Office */}
           <div className="glass-panel p-8 rounded-3xl hover:-translate-y-1 transition-transform">
             <h4 className="text-xs font-bold text-muted uppercase tracking-wider mb-1">Head Office</h4>
-            <h3 className="text-xl font-bold text-foreground mb-4">Main Office</h3>
+            <h3 className="text-xl font-bold text-foreground mb-4">Techhansa Infra</h3>
             <p className="text-muted text-sm mb-4">SHI 8/27 A K-3 Gilat Bazaar Bypass Shivpur Varanasi Uttar Pradesh India 221002</p>
             <p className="text-blue text-sm font-medium mb-1">+91 9711888951</p>
             <p className="text-blue text-sm font-medium">sales@techhansa.com</p>
           </div>
 
-          {/* Branch Office */}
-          <div className="glass-panel p-8 rounded-3xl hover:-translate-y-1 transition-transform">
-            <h4 className="text-xs font-bold text-muted uppercase tracking-wider mb-1">Branch Office</h4>
-            <h3 className="text-xl font-bold text-foreground mb-4">Rajasthan Hub</h3>
-            <p className="text-muted text-sm mb-4">78, Shri Krishna Colony, Sanganer, Jaipur, Rajasthan</p>
-            <p className="text-blue text-sm font-medium mb-1">+91 9711888951</p>
-            <p className="text-blue text-sm font-medium">sales@techhansa.com</p>
-          </div>
 
           {/* Support */}
           <div className="glass-panel p-8 rounded-3xl hover:-translate-y-1 transition-transform">
@@ -196,13 +188,6 @@ export default function ContactPage() {
               <Popup>
                 <strong>Head Office</strong><br />
                 Shivpur, Varanasi
-              </Popup>
-            </Marker>
-            {/* Jaipur */}
-            <Marker position={[26.8170, 75.7953]}>
-              <Popup>
-                <strong>Branch Office</strong><br />
-                Sanganer, Jaipur
               </Popup>
             </Marker>
           </MapContainer>

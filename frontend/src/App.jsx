@@ -22,6 +22,7 @@ import AdminSignup from './pages/admin/AdminSignup'
 import AdminForgotPassword from './pages/admin/AdminForgotPassword'
 import AdminDashboard from './pages/admin/AdminDashboard'
 import AdminProjectForm from './pages/admin/AdminProjectForm'
+import AdminAnnouncement from './pages/admin/AdminAnnouncement'
 
 function App() {
   useEffect(() => {
@@ -80,6 +81,7 @@ function App() {
           <Route index element={<AdminDashboard />} />
           <Route path="projects/new" element={<AdminProjectForm />} />
           <Route path="projects/edit/:id" element={<AdminProjectForm />} />
+          <Route path="announcement" element={<AdminAnnouncement />} />
         </Route>
       </Routes>
     </BrowserRouter>

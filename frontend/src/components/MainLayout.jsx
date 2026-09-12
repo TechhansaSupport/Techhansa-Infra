@@ -2,10 +2,12 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import AnnouncementBanner from './AnnouncementBanner';
 
 export default function MainLayout() {
   return (
     <div className="flex flex-col min-h-screen relative bg-white">
+      <AnnouncementBanner />
       {/* Global Background Graphics */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
         {/* Blueprint Grid Pattern */}
