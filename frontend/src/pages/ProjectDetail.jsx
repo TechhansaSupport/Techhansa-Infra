@@ -12,7 +12,7 @@ export default function ProjectDetail() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/projects/${id}`)
+    fetch(`/api/projects/${id}`)
       .then(res => {
         if (!res.ok) throw new Error('Project not found');
         return res.json();
@@ -39,7 +39,7 @@ export default function ProjectDetail() {
         message: `Please send the brochure and pricing details for ${project?.name || 'this property'}.`
       };
 
-      const res = await fetch('http://localhost:5000/api/inquiries', {
+      const res = await fetch('/api/inquiries', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

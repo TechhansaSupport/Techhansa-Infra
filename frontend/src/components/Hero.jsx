@@ -37,7 +37,7 @@ export default function Hero() {
   ];
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/projects')
+    fetch('/api/projects')
       .then(res => {
         if (!res.ok) throw new Error('API request failed');
         return res.json();
@@ -73,9 +73,9 @@ export default function Hero() {
         style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)' }}
       >
         <img
-          src="/images/hero-bg-light.jpg"
+          src="/images/hero-bg-new.png"
           alt="Modern Real Estate Background"
-          className="w-full h-full object-cover object-center animate-slow-zoom"
+          className="w-full h-full object-cover object-[60%_center] animate-slow-zoom"
         />
         {/* Gradient Overlay for better readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-white/30" />

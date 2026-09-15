@@ -53,7 +53,7 @@ export default function ProjectsHub() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/projects')
+    fetch('/api/projects')
       .then(res => res.json())
       .then(async data => {
         if (Array.isArray(data)) {

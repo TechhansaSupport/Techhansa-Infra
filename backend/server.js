@@ -14,10 +14,9 @@ app.use(express.json());
 // Serve static files from the uploads directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Routes
-app.get('/', (req, res) => {
-  res.send('Techhansa Infra API is running');
-});
+// Serve static frontend build
+const frontendDistPath = path.join(__dirname, '../frontend/dist');
+app.use(express.static(frontendDistPath));
 const inquiryRoutes = require('./routes/inquiryRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const authRoutes = require('./routes/authRoutes');
@@ -39,6 +38,11 @@ mongoose.connect(MONGODB_URI)
     console.error('Failed to connect to MongoDB (Make sure your local MongoDB instance is running!)');
     console.error(err.message);
   });
+
+// Catch-all route to serve React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(frontendDistPath, 'index.html'));
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

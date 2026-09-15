@@ -52,7 +52,7 @@ router.post('/', upload.single('image'), (req, res) => {
   // the path will just be /uploads/filename.ext
   res.status(200).json({ 
     message: 'File uploaded successfully',
-    url: `http://localhost:5000/uploads/${req.file.filename}` 
+    url: `/uploads/${req.file.filename}` 
   });
 });
 

@@ -19,7 +19,7 @@ export default function AdminAnnouncement() {
 
   const fetchAnnouncements = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/announcement');
+      const res = await fetch('/api/announcement');
       if (!res.ok) throw new Error('Failed to fetch announcements');
       const data = await res.json();
       setAnnouncements(Array.isArray(data) ? data : [data].filter(Boolean));
@@ -38,7 +38,7 @@ export default function AdminAnnouncement() {
     setIsAdding(true);
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch('http://localhost:5000/api/announcement', {
+      const res = await fetch('/api/announcement', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ export default function AdminAnnouncement() {
   const handleToggle = async (id, currentStatus) => {
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch(`http://localhost:5000/api/announcement/${id}`, {
+      const res = await fetch(`/api/announcement/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ export default function AdminAnnouncement() {
     if (!window.confirm('Are you sure you want to delete this announcement?')) return;
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch(`http://localhost:5000/api/announcement/${id}`, {
+      const res = await fetch(`/api/announcement/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

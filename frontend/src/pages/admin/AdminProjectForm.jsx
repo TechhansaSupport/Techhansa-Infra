@@ -24,7 +24,7 @@ export default function AdminProjectForm() {
 
   const fetchProject = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/projects/${id}`);
+      const res = await fetch(`/api/projects/${id}`);
       if (res.ok) {
         const data = await res.json();
         setFormData(data);
@@ -55,7 +55,7 @@ export default function AdminProjectForm() {
     uploadData.append('image', file);
 
     try {
-      const res = await fetch('http://localhost:5000/api/upload', {
+      const res = await fetch('/api/upload', {
         method: 'POST',
         // Do not set Content-Type header; browser will automatically set multipart/form-data with the boundary
         body: uploadData
@@ -82,7 +82,7 @@ export default function AdminProjectForm() {
       const uploadData = new FormData();
       uploadData.append('image', file);
       try {
-        const res = await fetch('http://localhost:5000/api/upload', {
+        const res = await fetch('/api/upload', {
           method: 'POST',
           body: uploadData
         });
@@ -121,7 +121,7 @@ export default function AdminProjectForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = isEditing ? `http://localhost:5000/api/projects/${id}` : 'http://localhost:5000/api/projects';
+      const url = isEditing ? `/api/projects/${id}` : '/api/projects';
       const method = isEditing ? 'PUT' : 'POST';
 
       const res = await fetch(url, {
