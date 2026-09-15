@@ -40,7 +40,7 @@ mongoose.connect(MONGODB_URI)
   });
 
 // Catch-all route to serve React app
-app.get('*', (req, res) => {
+app.get(/(.*)/, (req, res) => {
   res.sendFile(path.join(frontendDistPath, 'index.html'));
 });
 
