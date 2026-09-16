@@ -43,6 +43,7 @@ export default function AdminLayout() {
           <nav className="flex gap-4 border-l border-slate-200 pl-8">
             <a href="/admin" className="text-sm font-semibold text-foreground hover:text-blue transition-colors">Projects</a>
             <a href="/admin/announcement" className="text-sm font-semibold text-foreground hover:text-blue transition-colors">Announcements</a>
+            <a href="/admin/popup" className="text-sm font-semibold text-foreground hover:text-blue transition-colors">Pop-up Banner</a>
           </nav>
         </div>
         <button 
