@@ -24,7 +24,7 @@ export default function AdminProjectForm() {
 
   const fetchProject = async () => {
     try {
-      const res = await fetch(`/api/projects/${id}`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/projects/${id}`);
       if (res.ok) {
         const data = await res.json();
         setFormData(data);
@@ -55,7 +55,7 @@ export default function AdminProjectForm() {
     uploadData.append('image', file);
 
     try {
-      const res = await fetch('/api/upload', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/upload`, {
         method: 'POST',
         // Do not set Content-Type header; browser will automatically set multipart/form-data with the boundary
         body: uploadData
@@ -82,7 +82,7 @@ export default function AdminProjectForm() {
       const uploadData = new FormData();
       uploadData.append('image', file);
       try {
-        const res = await fetch('/api/upload', {
+        const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/upload`, {
           method: 'POST',
           body: uploadData
         });
@@ -274,7 +274,7 @@ export default function AdminProjectForm() {
               </div>
               {formData.coverImage && (
                 <div className="mt-4">
-                  <img src={formData.coverImage} alt="Cover Preview" className="h-32 object-cover rounded-xl shadow-sm border border-slate-200" />
+                  <img src={formData.coverImage} alt="Cover Preview" className="h-32 object-cover rounded-xl shadow-sm border border-slate-200"  loading="lazy" />
                 </div>
               )}
             </div>
@@ -301,7 +301,7 @@ export default function AdminProjectForm() {
                 <div className="grid grid-cols-4 gap-4 mt-4">
                   {(formData.gallery || []).map((url, idx) => (
                     <div key={idx} className="relative group">
-                      <img src={url} alt={`Gallery Image ${idx+1}`} className="h-24 w-full object-cover rounded-xl shadow-sm border border-slate-200" />
+                      <img src={url} alt={`Gallery Image ${idx+1}`} className="h-24 w-full object-cover rounded-xl shadow-sm border border-slate-200"  loading="lazy" />
                       <button 
                         type="button" 
                         onClick={() => {

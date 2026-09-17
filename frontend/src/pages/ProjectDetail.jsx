@@ -12,7 +12,7 @@ export default function ProjectDetail() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`/api/projects/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL || ''}/api/projects/${id}`)
       .then(res => {
         if (!res.ok) throw new Error('Project not found');
         return res.json();
@@ -39,7 +39,7 @@ export default function ProjectDetail() {
         message: `Please send the brochure and pricing details for ${project?.name || 'this property'}.`
       };
 
-      const res = await fetch('/api/inquiries', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/inquiries`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -92,7 +92,7 @@ export default function ProjectDetail() {
           <div className="flex justify-between items-start mb-6">
             <div>
               <h1 className="text-4xl font-bold mb-2 text-blue">{project.name}</h1>
-              <p className="text-muted text-lg">{project.location}, {project.city} | RERA: {project.reraNumber || 'N/A'}</p>
+              <p className="text-muted text-lg">{project.location}{project.location?.includes(project.city) ? '' : `, ${project.city}`} | RERA: {project.reraNumber || 'N/A'}</p>
             </div>
             <div className="bg-emerald-100 text-emerald border border-emerald-200 px-4 py-2 rounded-full font-bold text-sm shadow-md">
               {project.status}
@@ -151,7 +151,7 @@ export default function ProjectDetail() {
                 <div className="grid grid-cols-2 gap-4">
                   {project.gallery?.length > 0 ? project.gallery.map((image, i) => (
                     <div key={i} className="h-48 bg-slate-100 rounded-xl overflow-hidden shadow-md hover-glow transition-all cursor-pointer">
-                       <img src={image} alt={`Gallery ${i+1}`} className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
+                       <img src={image} alt={`Gallery ${i+1}`} className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"  loading="lazy" />
                     </div>
                   )) : (
                     <p className="col-span-2 text-muted">No media available.</p>

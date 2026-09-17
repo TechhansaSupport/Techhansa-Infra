@@ -6,7 +6,7 @@ export default function FeaturedProjects() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/projects')
+    fetch(`${import.meta.env.VITE_API_URL || ''}/api/projects`)
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) {
@@ -45,7 +45,7 @@ export default function FeaturedProjects() {
               <Link to={`/projects/${project._id}`} key={project._id} className="group block">
                 <div className="glass-panel rounded-3xl overflow-hidden hover-glow transition-all">
                   <div className="relative h-72 w-full overflow-hidden">
-                    <img src={project.coverImage || '/images/modern-property-light.jpg'} alt={project.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <img src={project.coverImage || '/images/modern-property-light.jpg'} alt={project.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"  loading="lazy" />
                     <div className="absolute top-4 right-4 bg-white/90 text-blue px-3 py-1 text-xs font-bold rounded-full border border-slate-200 backdrop-blur-md">{project.status}</div>
                   </div>
                   <div className="p-6">

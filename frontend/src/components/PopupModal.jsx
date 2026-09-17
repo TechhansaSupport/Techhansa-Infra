@@ -9,7 +9,7 @@ export default function PopupModal() {
   useEffect(() => {
     const fetchBanner = async () => {
       try {
-        const res = await fetch('/api/popup-banners/active');
+        const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/popup-banners/active`);
         if (res.ok) {
           const data = await res.json();
           if (data && data.isActive) {
@@ -63,10 +63,10 @@ export default function PopupModal() {
         {banner.image ? (
           banner.linkUrl ? (
             <a href={banner.linkUrl} target="_blank" rel="noopener noreferrer" className="block w-full" onClick={handleClose}>
-              <img src={banner.image} alt={banner.title} className="w-full h-auto object-contain max-h-[80vh]" />
+              <img src={banner.image} alt={banner.title} className="w-full h-auto object-contain max-h-[80vh]"  loading="lazy" />
             </a>
           ) : (
-            <img src={banner.image} alt={banner.title} className="w-full h-auto object-contain max-h-[80vh]" />
+            <img src={banner.image} alt={banner.title} className="w-full h-auto object-contain max-h-[80vh]"  loading="lazy" />
           )
         ) : (
           <div className="p-8 text-center">

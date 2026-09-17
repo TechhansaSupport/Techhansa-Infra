@@ -2,17 +2,9 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
+const sharp = require('sharp');
 
-// Configure storage for multer
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // The folder where images will be saved
-  },
-  filename: function (req, file, cb) {
-    // Generate a unique filename: fieldname-timestamp.ext
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-  }
-});
+const storage = multer.memoryStorage();
 
 // Init upload
 const upload = multer({
@@ -42,18 +34,27 @@ function checkFileType(file, cb) {
 // @route   POST /api/upload
 // @desc    Upload an image
 // @access  Private (Admin) - for simplicity we just define the route, but in production we should protect this with adminAuth
-router.post('/', upload.single('image'), (req, res) => {
+router.post('/', upload.single('image'), async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ message: 'No file uploaded' });
   }
   
-  // Return the URL to access the uploaded file
-  // Since we'll configure express.static to serve 'uploads' on the root domain,
-  // the path will just be /uploads/filename.ext
-  res.status(200).json({ 
-    message: 'File uploaded successfully',
-    url: `/uploads/${req.file.filename}` 
-  });
+  try {
+    const filename = req.file.fieldname + '-' + Date.now() + '.webp';
+    const outputPath = path.join(__dirname, '../uploads', filename);
+
+    await sharp(req.file.buffer)
+      .webp({ quality: 80 })
+      .toFile(outputPath);
+
+    res.status(200).json({ 
+      message: 'File uploaded successfully',
+      url: `/uploads/${filename}` 
+    });
+  } catch (error) {
+    console.error('Error processing image:', error);
+    res.status(500).json({ message: 'Error processing image' });
+  }
 });
 
 module.exports = router;

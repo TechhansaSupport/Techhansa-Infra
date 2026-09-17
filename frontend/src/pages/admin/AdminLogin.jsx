@@ -22,7 +22,7 @@ export default function AdminLogin() {
     setLoading(true);
 
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: finalEmail, password: finalPassword, rememberMe })
@@ -78,7 +78,7 @@ export default function AdminLogin() {
           
           {/* Logo */}
           <div className="flex items-center gap-4 mb-6">
-            <img src="/logo.png" alt="Techhansa Infra Logo" className="w-20 h-20 rounded-full object-contain shadow-sm border border-slate-100" />
+            <img src="/logo.png" alt="Techhansa Infra Logo" className="w-20 h-20 rounded-full object-contain shadow-sm border border-slate-100"  loading="lazy" />
             <span className="font-title font-bold text-[34px] text-[#D4AF37] tracking-tight drop-shadow-sm -translate-y-1.5">Techhansa Infra</span>
           </div>
 
@@ -162,7 +162,7 @@ export default function AdminLogin() {
                src="/images/surreal_city_door.jpg" 
                alt="Surreal City Door Miniature Art" 
                className="w-full h-full object-cover"
-             />
+              loading="lazy" />
 
              {/* Dark gradient overlay to make text readable (optional, can be removed too if no text) */}
              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-transparent"></div>

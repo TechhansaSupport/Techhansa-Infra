@@ -39,7 +39,7 @@ export default function AboutUs() {
                 <div key={i} className="flex flex-col items-center w-36">
                   <div className="w-full aspect-square bg-slate-100 mb-4 overflow-hidden border border-slate-200 shadow-md flex items-center justify-center rounded-xl bg-white/50 backdrop-blur-sm">
                      {director.image ? (
-                       <img src={director.image} alt={director.name} className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" />
+                       <img src={director.image} alt={director.name} className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"  loading="lazy" />
                      ) : (
                        <span className="text-muted text-sm italic">No Image</span>
                      )}
@@ -60,7 +60,7 @@ export default function AboutUs() {
                 <div key={i} className="flex flex-col items-center w-36">
                   <div className="w-full aspect-square bg-slate-100 mb-4 overflow-hidden border border-slate-200 shadow-md flex items-center justify-center rounded-xl bg-white/50 backdrop-blur-sm">
                      {director.image ? (
-                       <img src={director.image} alt={director.name} className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" />
+                       <img src={director.image} alt={director.name} className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"  loading="lazy" />
                      ) : (
                        <span className="text-muted text-sm italic">No Image</span>
                      )}

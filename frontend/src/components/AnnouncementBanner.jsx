@@ -23,7 +23,7 @@ export default function AnnouncementBanner() {
   useEffect(() => {
     const fetchAnnouncements = async () => {
       try {
-        const res = await fetch('/api/announcement?active=true');
+        const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/announcement?active=true`);
         const data = await res.json();
         if (Array.isArray(data)) {
           setAnnouncements(data);

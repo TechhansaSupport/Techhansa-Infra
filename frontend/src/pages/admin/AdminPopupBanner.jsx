@@ -18,7 +18,7 @@ export default function AdminPopupBanner() {
     const fetchBanners = async () => {
       try {
         const token = localStorage.getItem('adminToken');
-        const res = await fetch('/api/popup-banners', {
+        const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/popup-banners`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -39,7 +39,7 @@ export default function AdminPopupBanner() {
   const refreshBanners = async () => {
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch('/api/popup-banners', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/popup-banners`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -64,7 +64,7 @@ export default function AdminPopupBanner() {
       if (imageFile) {
         const formData = new FormData();
         formData.append('image', imageFile);
-        const uploadRes = await fetch('/api/upload', {
+        const uploadRes = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/upload`, {
           method: 'POST',
           body: formData
         });
@@ -74,7 +74,7 @@ export default function AdminPopupBanner() {
         }
       }
 
-      const res = await fetch('/api/popup-banners', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/popup-banners`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ export default function AdminPopupBanner() {
       const bannerToUpdate = banners.find(b => b._id === id);
       if(!bannerToUpdate) return;
 
-      const res = await fetch(`/api/popup-banners/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/popup-banners/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -137,7 +137,7 @@ export default function AdminPopupBanner() {
     if (!window.confirm('Are you sure you want to delete this pop-up banner?')) return;
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch(`/api/popup-banners/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/popup-banners/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -254,7 +254,7 @@ export default function AdminPopupBanner() {
               <div key={banner._id} className={`flex flex-col md:flex-row gap-6 p-6 rounded-xl border ${banner.isActive ? 'border-emerald/30 bg-emerald/5' : 'border-slate-200 bg-slate-50'}`}>
                 {banner.image && (
                   <div className="w-full md:w-48 h-32 shrink-0 rounded-lg overflow-hidden border border-slate-200">
-                    <img src={banner.image} alt="Banner" className="w-full h-full object-cover" />
+                    <img src={banner.image} alt="Banner" className="w-full h-full object-cover"  loading="lazy" />
                   </div>
                 )}
                 <div className="flex-1 flex flex-col">

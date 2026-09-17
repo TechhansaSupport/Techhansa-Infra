@@ -19,7 +19,7 @@ export default function Footer() {
 
       {/* Infrastructure Illustration Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <img src="/images/footer-illustration.jpg" alt="Modern Infrastructure" className="w-full h-full object-cover object-center opacity-30" />
+        <img src="/images/footer-illustration.jpg" alt="Modern Infrastructure" className="w-full h-full object-cover object-center opacity-30"  loading="lazy" />
         <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/50 to-white/20 z-10" />
       </div>
 
@@ -27,7 +27,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-1">
             <Link to="/" className="flex items-center gap-2 text-foreground hover:text-gold transition-colors mb-6">
-              <img src="/logo.png" alt="Techhansa Infra Logo" className="w-16 h-16 rounded-full object-contain border border-slate-200" />
+              <img src="/logo.png" alt="Techhansa Infra Logo" className="w-16 h-16 rounded-full object-contain border border-slate-200"  loading="lazy" />
               <span className="font-title font-semibold text-2xl tracking-tight text-gold">Techhansa Infra</span>
             </Link>
             <p className="text-muted text-sm leading-relaxed mb-6">

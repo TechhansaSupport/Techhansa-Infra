@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://techhansainfra.com/sitemap.xml
