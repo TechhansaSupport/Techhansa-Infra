@@ -58,8 +58,8 @@ export default function ContactPage() {
   return (
     <div className="pt-40 pb-24 min-h-screen">
       <Navbar />
-      <div className="container mx-auto px-8 max-w-6xl">
-        <h1 className="text-5xl font-bold mb-12 text-center text-blue drop-shadow-sm">Contact Us</h1>
+      <div className="container mx-auto px-4 md:px-8 max-w-6xl">
+        <h1 className="text-3xl md:text-5xl font-bold mb-12 text-center text-blue drop-shadow-sm">Contact Us</h1>
 
         <div className="grid lg:grid-cols-3 gap-12 mb-16">
           {/* Contact Information */}
@@ -137,7 +137,7 @@ export default function ContactPage() {
 
         <div className="text-center mb-8">
           <h3 className="text-blue font-bold tracking-widest text-sm uppercase mb-2">Find Us</h3>
-          <h2 className="text-4xl font-bold text-foreground">Offices & Support</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">Offices & Support</h2>
         </div>
 
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mb-16">

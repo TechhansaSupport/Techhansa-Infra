@@ -88,10 +88,10 @@ export default function ProjectDetail() {
       <Navbar />
 
       <section className="pt-32 pb-12 border-b border-slate-200">
-        <div className="container mx-auto px-8 max-w-6xl">
+        <div className="container mx-auto px-4 md:px-8 max-w-6xl">
           <div className="flex justify-between items-start mb-6">
             <div>
-              <h1 className="text-4xl font-bold mb-2 text-blue">{project.name}</h1>
+              <h1 className="text-3xl md:text-4xl font-bold mb-2 text-blue">{project.name}</h1>
               <p className="text-muted text-lg">{project.location}{project.location?.includes(project.city) ? '' : `, ${project.city}`} | RERA: {project.reraNumber || 'N/A'}</p>
             </div>
             <div className="bg-emerald-100 text-emerald border border-emerald-200 px-4 py-2 rounded-full font-bold text-sm shadow-md">
@@ -119,13 +119,13 @@ export default function ProjectDetail() {
       </section>
 
       <section className="py-12 relative">
-        <div className="container mx-auto px-8 max-w-6xl grid lg:grid-cols-3 gap-12">
+        <div className="container mx-auto px-4 md:px-8 max-w-6xl grid lg:grid-cols-3 gap-12">
           
           <div className="lg:col-span-2">
             {activeTab === 'Overview' && (
               <div className="space-y-6">
                 <h2 className="text-2xl font-bold mb-4">Project Overview</h2>
-                <div className="grid grid-cols-3 gap-6 mb-8">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
                   <div className="glass-panel p-6 rounded-2xl hover-scale text-center">
                     <p className="text-muted mb-2">Total Area</p>
                     <p className="text-2xl font-bold text-blue">{project.overview?.acreage || 'N/A'}</p>

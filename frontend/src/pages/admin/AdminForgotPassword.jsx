@@ -55,7 +55,7 @@ export default function AdminForgotPassword() {
       <div className="w-full max-w-[1100px] h-full max-h-[650px] bg-white/90 backdrop-blur-md rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-slate-200/50 flex flex-col lg:flex-row overflow-hidden relative z-10">
         
         {/* Left Side */}
-        <div className="w-full lg:w-[45%] flex flex-col px-8 py-6 md:px-12 md:py-6 justify-center">
+        <div className="w-full lg:w-[45%] flex flex-col px-4 md:px-8 py-6 md:px-12 md:py-6 justify-center">
           
           {/* Logo */}
           <div className="flex items-center gap-4 mb-6">

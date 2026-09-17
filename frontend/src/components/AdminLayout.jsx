@@ -36,7 +36,7 @@ export default function AdminLayout() {
       </div>
 
       {/* Admin Navbar (Glassmorphism) */}
-      <header className="sticky top-0 z-50 glass-panel border-b border-white/20 py-4 px-8 flex justify-between items-center shadow-sm">
+      <header className="sticky top-0 z-50 glass-panel border-b border-white/20 py-4 px-4 md:px-8 flex justify-between items-center shadow-sm">
         <div className="flex items-center gap-3">
           <img src="/logo.png" alt="Techhansa Infra Logo" className="w-16 h-16 rounded-full object-contain shadow-md border border-slate-200"  loading="lazy" />
           <span className="font-title font-bold text-2xl tracking-tight text-gold drop-shadow-sm mr-8">Techhansa Infra <span className="text-muted text-lg font-medium ml-2">Admin Panel</span></span>

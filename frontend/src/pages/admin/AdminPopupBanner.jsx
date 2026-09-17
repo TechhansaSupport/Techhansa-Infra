@@ -155,7 +155,7 @@ export default function AdminPopupBanner() {
   if (error) return <div className="p-8 text-center text-red-500">{error}</div>;
 
   return (
-    <div className="max-w-5xl mx-auto py-12 px-8">
+    <div className="max-w-5xl mx-auto py-12 px-4 md:px-8">
       <h1 className="text-3xl font-bold font-title text-foreground mb-8">Manage Pop-up Banners</h1>
       
       {/* Add New Form */}
@@ -236,7 +236,7 @@ export default function AdminPopupBanner() {
           <button 
             type="submit" 
             disabled={isAdding || !title || !description}
-            className="bg-emerald text-white font-bold py-3 px-8 rounded-xl shadow-md hover:shadow-lg transition-all disabled:opacity-50 mt-4"
+            className="bg-emerald text-white font-bold py-3 px-4 md:px-8 rounded-xl shadow-md hover:shadow-lg transition-all disabled:opacity-50 mt-4"
           >
             {isAdding ? 'Creating...' : 'Create Pop-up Banner'}
           </button>
@@ -247,7 +247,7 @@ export default function AdminPopupBanner() {
       <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
         <h2 className="text-xl font-semibold mb-6">Existing Banners</h2>
         {banners.length === 0 ? (
-          <p className="text-muted text-center py-8">No pop-up banners found.</p>
+          <p className="text-muted text-center py-6 md:py-8">No pop-up banners found.</p>
         ) : (
           <div className="grid grid-cols-1 gap-6">
             {banners.map((banner) => (

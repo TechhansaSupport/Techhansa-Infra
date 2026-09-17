@@ -24,12 +24,16 @@ export default function FeaturedProjects() {
       });
   }, []);
 
+  if (!loading && featured.length === 0) {
+    return null;
+  }
+
   return (
     <section className="py-24">
-      <div className="container mx-auto px-8">
+      <div className="container mx-auto px-4 md:px-8">
         <div className="flex justify-between items-end mb-12">
           <div>
-            <h2 className="text-4xl font-bold mb-4 text-foreground">Signature Developments</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Signature Developments</h2>
             <p className="text-muted max-w-xl">Explore our curated selection of award-winning residential and commercial spaces.</p>
           </div>
           <Link to="/projects" className="text-blue font-bold hover:text-blue-light hover:underline hidden md:block transition-colors">View All Projects &rarr;</Link>

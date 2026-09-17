@@ -2,8 +2,8 @@ import React from 'react';
 
 export function PrivacyPolicy() {
   return (
-    <div className="pt-32 pb-24 container mx-auto px-8 max-w-4xl min-h-[60vh] bg-slate-50 text-foreground">
-      <h1 className="text-4xl font-bold mb-8">Privacy Policy</h1>
+    <div className="pt-32 pb-24 container mx-auto px-4 md:px-8 max-w-4xl min-h-[60vh] bg-slate-50 text-foreground">
+      <h1 className="text-3xl md:text-4xl font-bold mb-8">Privacy Policy</h1>
       <div className="prose prose-lg text-muted prose-headings:text-foreground prose-a:text-blue">
         <p>Your privacy is important to us. This privacy policy explains how Techhansa Infra collects, uses, and protects your personal data when you use our website and inquiry forms.</p>
         <h2>Data Collection</h2>
@@ -17,8 +17,8 @@ export function PrivacyPolicy() {
 
 export function Disclaimer() {
   return (
-    <div className="pt-32 pb-24 container mx-auto px-8 max-w-4xl min-h-[60vh] bg-slate-50 text-foreground">
-      <h1 className="text-4xl font-bold mb-8">Terms & Disclaimer</h1>
+    <div className="pt-32 pb-24 container mx-auto px-4 md:px-8 max-w-4xl min-h-[60vh] bg-slate-50 text-foreground">
+      <h1 className="text-3xl md:text-4xl font-bold mb-8">Terms & Disclaimer</h1>
       <div className="prose prose-lg text-muted prose-headings:text-foreground prose-a:text-blue">
         <p>The information on this website is provided for general informational purposes only.</p>
         <h2>Artistic Impressions</h2>

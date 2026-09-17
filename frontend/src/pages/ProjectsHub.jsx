@@ -122,10 +122,10 @@ export default function ProjectsHub() {
       <Navbar />
       
       <section className="pt-40 pb-12 border-b border-slate-200">
-        <div className="container mx-auto px-8">
+        <div className="container mx-auto px-4 md:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
             <div>
-              <h1 className="text-4xl font-bold mb-2 text-blue">Our Portfolio</h1>
+              <h1 className="text-3xl md:text-4xl font-bold mb-2 text-blue">Our Portfolio</h1>
               <p className="text-muted">Filter through our extensive portfolio of completed, ongoing, and future developments across key global markets.</p>
             </div>
             <div className="flex bg-slate-100 border border-slate-200 p-1 rounded-xl">
@@ -193,7 +193,7 @@ export default function ProjectsHub() {
       </section>
 
       <section className="py-12">
-        <div className="container mx-auto px-8">
+        <div className="container mx-auto px-4 md:px-8">
           {view === 'list' ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {loading ? (

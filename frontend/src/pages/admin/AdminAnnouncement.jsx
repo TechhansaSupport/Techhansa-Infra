@@ -116,7 +116,7 @@ export default function AdminAnnouncement() {
   if (error) return <div className="p-8 text-center text-red-500">{error}</div>;
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-8">
+    <div className="max-w-4xl mx-auto py-12 px-4 md:px-8">
       <h1 className="text-3xl font-bold font-title text-foreground mb-8">Manage Announcements</h1>
       
       {/* Add New Announcement Form */}
@@ -183,7 +183,7 @@ export default function AdminAnnouncement() {
           <button 
             type="submit" 
             disabled={isAdding || !newText || newText === '<p><br></p>'}
-            className="bg-emerald text-white font-bold py-3 px-8 rounded-full shadow-md hover:shadow-lg transition-all disabled:opacity-50"
+            className="bg-emerald text-white font-bold py-3 px-4 md:px-8 rounded-full shadow-md hover:shadow-lg transition-all disabled:opacity-50"
           >
             {isAdding ? 'Adding...' : 'Add Announcement'}
           </button>
@@ -194,7 +194,7 @@ export default function AdminAnnouncement() {
       <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
         <h2 className="text-xl font-semibold mb-6">Existing Announcements</h2>
         {announcements.length === 0 ? (
-          <p className="text-muted text-center py-8">No announcements found.</p>
+          <p className="text-muted text-center py-6 md:py-8">No announcements found.</p>
         ) : (
           <div className="flex flex-col gap-4">
             {announcements.map((announcement) => (

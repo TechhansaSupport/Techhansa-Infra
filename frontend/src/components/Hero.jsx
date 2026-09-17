@@ -12,29 +12,7 @@ export default function Hero() {
   const [selectedBudget, setSelectedBudget] = useState('');
   const [apiError, setApiError] = useState(false);
 
-  const dummyProperties = [
-    {
-      _id: 1,
-      name: 'TECHHANSA CYBER PARK',
-      location: 'Rent in Gurgaon, HR',
-      agent: 'Rajiv T.',
-      image: '/images/modern-property-light.jpg'
-    },
-    {
-      _id: 2,
-      name: 'THE CAMELLIAS',
-      location: 'Rent in Dubai, UAE',
-      agent: 'Priya S.',
-      image: '/images/hero-bg-light.jpg'
-    },
-    {
-      _id: 3,
-      name: 'AURIS RESIDENCES',
-      location: 'Rent in Mumbai, MH',
-      agent: 'Alex Jam',
-      image: '/images/modern-property-light.jpg'
-    }
-  ];
+  const dummyProperties = [];
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL || ''}/api/projects`)
@@ -81,11 +59,11 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-white/30" />
       </div>
 
-      <div className="relative z-10 container mx-auto px-8 pt-32 pb-16 flex-1 flex flex-col lg:flex-row items-center justify-between gap-12">
+      <div className="relative z-10 container mx-auto px-4 md:px-8 pt-32 pb-16 flex-1 flex flex-col lg:flex-row items-center justify-between gap-12">
 
         {/* Left Content */}
         <div className="max-w-2xl text-foreground animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-emerald to-emerald-light drop-shadow-[0_4px_12px_rgba(16,185,129,0.3)]">
+          <h1 className="text-3xl md:text-4xl md:text-5xl font-bold leading-tight mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-emerald to-emerald-light drop-shadow-[0_4px_12px_rgba(16,185,129,0.3)]">
             WE BUILD THE <br /> FUTURE <br /> REAL ESTATE
           </h1>
           <p className="text-muted text-xl max-w-xl leading-relaxed border-l-4 border-gold pl-6 py-1 mb-10">
@@ -134,7 +112,7 @@ export default function Hero() {
                 if (selectedBudget) params.append('budget', selectedBudget);
                 navigate(`/projects?${params.toString()}`);
               }}
-              className="bg-gradient-to-r from-blue to-blue-light text-white px-8 py-3 rounded-xl font-bold hover-glow transition-all whitespace-nowrap"
+              className="bg-gradient-to-r from-blue to-blue-light text-white px-4 md:px-8 py-3 rounded-xl font-bold hover-glow transition-all whitespace-nowrap"
             >
               Find Home
             </button>

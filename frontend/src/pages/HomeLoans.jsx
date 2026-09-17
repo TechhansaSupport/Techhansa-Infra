@@ -3,9 +3,9 @@ import React from 'react';
 export default function HomeLoans() {
   return (
     <section id="loans" className="bg-slate-50 text-foreground py-24 border-t border-slate-200">
-      <div className="container mx-auto px-8">
+      <div className="container mx-auto px-4 md:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-foreground">Flexible Home Loans</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-3xl md:text-5xl font-bold mb-6 text-foreground">Flexible Home Loans</h2>
           <p className="text-lg text-muted">
             We partner with top-tier financial institutions to bring you the lowest interest rates and a seamless approval process.
           </p>
@@ -28,7 +28,7 @@ export default function HomeLoans() {
         </div>
 
         <div className="mt-16 text-center">
-          <button className="bg-gradient-to-r from-blue to-blue-light text-white shadow-lg px-8 py-4 rounded-full text-lg font-bold hover-glow transition-colors">
+          <button className="bg-gradient-to-r from-blue to-blue-light text-white shadow-lg px-4 md:px-8 py-4 rounded-full text-lg font-bold hover-glow transition-colors">
             Check Eligibility
           </button>
         </div>

@@ -23,7 +23,7 @@ export default function Footer() {
         <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/50 to-white/20 z-10" />
       </div>
 
-      <div className="container mx-auto px-8 relative z-10">
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-1">
             <Link to="/" className="flex items-center gap-2 text-foreground hover:text-gold transition-colors mb-6">

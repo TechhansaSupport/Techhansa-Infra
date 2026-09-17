@@ -28,13 +28,13 @@ export default function Sell() {
   };
   return (
     <section id="contact" className="bg-white text-foreground py-24">
-      <div className="container mx-auto px-8">
+      <div className="container mx-auto px-4 md:px-8">
         <div className="bg-slate-50 border border-slate-200 shadow-lg rounded-3xl p-12 lg:p-20 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-blue opacity-10 blur-[100px] rounded-full" />
           
           <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue drop-shadow-sm">Experience Luxury Living.</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-3xl md:text-5xl font-bold mb-6 text-blue drop-shadow-sm">Experience Luxury Living.</h2>
               <p className="text-lg text-muted mb-8 max-w-md">
                 Discover our portfolio of premium residential and commercial spaces. Leave your details below and our property advisors will get in touch with you.
               </p>

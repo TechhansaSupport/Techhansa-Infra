@@ -3,8 +3,8 @@ import React from 'react';
 export default function Contact() {
   return (
     <section id="contact-info" className="bg-white text-gray-900 py-24 border-t border-gray-200">
-      <div className="container mx-auto px-8 text-center">
-        <h2 className="text-4xl lg:text-5xl font-bold mb-6">Get In Touch</h2>
+      <div className="container mx-auto px-4 md:px-8 text-center">
+        <h2 className="text-3xl md:text-4xl lg:text-3xl md:text-5xl font-bold mb-6">Get In Touch</h2>
         <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
           Whether you're looking to buy, sell, or just have a question about the real estate market, our team of experts is here to help.
         </p>

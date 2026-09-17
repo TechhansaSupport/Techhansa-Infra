@@ -45,7 +45,7 @@ export default function AdminDashboard() {
   return (
     <div className="container mx-auto max-w-6xl">
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-4xl font-bold text-foreground">Projects Management</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground">Projects Management</h2>
         <Link to="/admin/projects/new" className="bg-gold text-white px-6 py-3 rounded-full font-bold hover:bg-gold/90 transition-all hover-scale shadow-sm">
           + Add New Project
         </Link>
