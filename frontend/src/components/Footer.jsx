@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Building2, Home, Compass, Trees, Hammer } from 'lucide-react';
+import { useProjectContext } from '../contexts/ProjectContext';
 
 export default function Footer() {
+  const { hasProjects } = useProjectContext();
   return (
     <footer className="bg-white text-foreground pt-20 pb-10 border-t border-slate-200 relative overflow-hidden">
       {/* Decorative Light Graphics & Orbs */}
@@ -51,7 +53,7 @@ export default function Footer() {
             <ul className="space-y-4 text-muted text-sm">
               <li><Link to="/" className="hover:text-blue transition-colors">Home</Link></li>
               <li><Link to="/about" className="hover:text-blue transition-colors">About Us</Link></li>
-              <li><Link to="/projects" className="hover:text-blue transition-colors">Projects</Link></li>
+              {hasProjects && <li><Link to="/projects" className="hover:text-blue transition-colors">Projects</Link></li>}
               <li><Link to="/contact" className="hover:text-blue transition-colors">Contact</Link></li>
             </ul>
           </div>
@@ -59,7 +61,7 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-lg mb-6">Services</h4>
             <ul className="space-y-4 text-muted text-sm">
-              <li><Link to="/projects" className="hover:text-blue transition-colors">Property Sales</Link></li>
+              {hasProjects && <li><Link to="/projects" className="hover:text-blue transition-colors">Property Sales</Link></li>}
               <li><Link to="/contact" className="hover:text-blue transition-colors">Property Valuations</Link></li>
               <li><Link to="/contact" className="hover:text-blue transition-colors">Home Loans</Link></li>
               <li><Link to="/disclaimer" className="hover:text-blue transition-colors">Legal Advisory</Link></li>

@@ -5,6 +5,7 @@ import Lenis from 'lenis'
 // Layouts
 import MainLayout from './components/MainLayout'
 import AdminLayout from './components/AdminLayout'
+import ScrollToTop from './components/ScrollToTop'
 
 // Public Pages
 import Home from './pages/Home'
@@ -25,6 +26,8 @@ import AdminProjectForm from './pages/admin/AdminProjectForm'
 import AdminAnnouncement from './pages/admin/AdminAnnouncement'
 import AdminPopupBanner from './pages/admin/AdminPopupBanner'
 
+import { ProjectProvider } from './contexts/ProjectContext'
+
 function App() {
   useEffect(() => {
     const lenis = new Lenis({
@@ -37,6 +40,8 @@ function App() {
       smoothTouch: false,
       touchMultiplier: 2,
     });
+    
+    window.lenis = lenis;
 
     function raf(time) {
       lenis.raf(time);
@@ -45,12 +50,15 @@ function App() {
     requestAnimationFrame(raf);
 
     return () => {
+      window.lenis = null;
       lenis.destroy();
     };
   }, []);
 
   return (
-    <BrowserRouter>
+    <ProjectProvider>
+      <BrowserRouter>
+        <ScrollToTop />
       {/* Global Animated Background */}
       <div className="fixed inset-0 z-[-1] pointer-events-none bg-white overflow-hidden">
         <div className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] opacity-60 animate-slow-spin" 
@@ -87,6 +95,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    </ProjectProvider>
   )
 }
 

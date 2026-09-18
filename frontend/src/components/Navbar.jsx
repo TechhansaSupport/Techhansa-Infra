@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-
+import { useProjectContext } from '../contexts/ProjectContext';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { hasProjects } = useProjectContext();
 
   const navLinks = [
     { path: '/', label: 'Home', exact: true },
     { path: '/about', label: 'About Us' },
-    { path: '/projects', label: 'Projects' },
+    ...(hasProjects ? [{ path: '/projects', label: 'Projects' }] : []),
     { path: '/sustainability', label: 'Sustainability' },
     { path: '/contact', label: 'Contact' },
   ];

@@ -28,13 +28,12 @@ export default function AboutUs() {
           <div className="w-full h-px bg-slate-200 mb-16"></div>
           
           <div className="flex flex-col items-center gap-y-16">
-            {/* Top Row: 4 Directors */}
+            {/* Top Row: 3 Directors */}
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-8">
               {[
                 { name: 'Ashish Mishra', role: 'Founder and CEO', image: '/images/directors/media_1788862298579.png' },
                 { name: 'Abhishek Mishra', role: 'Co-Founder and CTO', image: '/images/directors/media_1788862298403.png' },
-                { name: 'Muthu Ramaiah', role: 'Managing Director Singapore', image: '/images/directors/media_1788862298688.png' },
-                { name: 'Suman Mishra', role: 'President & Director', image: '/images/directors/media_1788862721987.png' }
+                { name: 'Muthu Ramaiah', role: 'Managing Director Singapore', image: '/images/directors/media_1788862298688.png' }
               ].map((director, i) => (
                 <div key={i} className="flex flex-col items-center w-36">
                   <div className="w-full aspect-square bg-slate-100 mb-4 overflow-hidden border border-slate-200 shadow-md flex items-center justify-center rounded-xl bg-white/50 backdrop-blur-sm">
@@ -50,12 +49,11 @@ export default function AboutUs() {
               ))}
             </div>
 
-            {/* Bottom Row: 3 Directors */}
+            {/* Bottom Row: 2 Directors */}
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-8">
               {[
-                { name: 'Todd Roth', role: 'Vice President US Operations', image: '/images/directors/media_1788862725252.png' },
-                { name: 'Archana Singh', role: 'Board Member', image: '/images/directors/media_1788862298740.png' },
-                { name: 'Rajesh Singh', role: 'Board Member', image: '/images/directors/media_1788862298521.png' }
+                { name: 'Suman Mishra', role: 'President & Director', image: '/images/directors/media_1788862721987.png' },
+                { name: 'Todd Roth', role: 'Vice President US Operations', image: '/images/directors/media_1788862725252.png' }
               ].map((director, i) => (
                 <div key={i} className="flex flex-col items-center w-36">
                   <div className="w-full aspect-square bg-slate-100 mb-4 overflow-hidden border border-slate-200 shadow-md flex items-center justify-center rounded-xl bg-white/50 backdrop-blur-sm">

@@ -10,9 +10,6 @@ export default function Hero() {
   const [selectedCity, setSelectedCity] = useState('');
   const [selectedType, setSelectedType] = useState('');
   const [selectedBudget, setSelectedBudget] = useState('');
-  const [apiError, setApiError] = useState(false);
-
-  const dummyProperties = [];
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL || ''}/api/projects`)
@@ -24,15 +21,13 @@ export default function Hero() {
         if (data && data.length > 0) {
           const featured = data.filter(p => p.isFeatured);
           setProperties(featured.length > 0 ? featured : data.slice(0, 5));
-          setApiError(false);
         } else {
-          setProperties(dummyProperties);
+          setProperties([]);
         }
       })
       .catch(err => {
         console.error(err);
-        setProperties(dummyProperties);
-        setApiError(true);
+        setProperties([]);
       });
   }, []);
 
@@ -70,11 +65,6 @@ export default function Hero() {
             Discover a curated portfolio of premium residential and commercial developments designed for the modern visionary. At Techhansa Infra, we bring decades of excellence in crafting sustainable, ultra-luxury spaces that redefine urban living.
           </p>
 
-          {apiError && (
-            <div className="bg-red-500/10 border border-red-500/30 text-red-500 px-4 py-2 rounded-lg text-sm font-medium mb-6 inline-block shadow-sm">
-              ⚠ Cannot connect to database. Showing offline preview data.
-            </div>
-          )}
 
           <div className="glass-panel p-4 rounded-3xl flex flex-col md:flex-row gap-4 max-w-3xl animate-slide-up">
             <select 
