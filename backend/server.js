@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const fs = require('fs');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -14,9 +15,7 @@ app.use(express.json());
 // Serve static files from the uploads directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Serve static frontend build
-const frontendDistPath = path.join(__dirname, '../frontend/dist');
-app.use(express.static(frontendDistPath));
+const frontendDistPath = path.resolve(__dirname, '..', 'frontend', 'dist');
 const inquiryRoutes = require('./routes/inquiryRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const authRoutes = require('./routes/authRoutes');
@@ -41,10 +40,22 @@ mongoose.connect(process.env.MONGODB_URI)
     console.error(err.message);
   });
 
-// Catch-all route to serve React app
-app.get(/(.*)/, (req, res) => {
-  res.sendFile(path.join(frontendDistPath, 'index.html'));
-});
+// Serve static frontend build (after API routes so /api/* is not intercepted)
+if (fs.existsSync(frontendDistPath) && fs.existsSync(path.join(frontendDistPath, 'index.html'))) {
+  console.log('--------------------------------------');
+  console.log('Serving Frontend Build from:', frontendDistPath);
+  console.log('--------------------------------------');
+
+  app.use(express.static(frontendDistPath));
+
+  // Catch-all for React Router — skip if it's an API request
+  app.get(/.*/,  (req, res, next) => {
+    if (req.path.startsWith('/api/')) return next();
+    res.sendFile(path.join(frontendDistPath, 'index.html'));
+  });
+} else {
+  console.log('⚠️  Frontend build not found at:', frontendDistPath);
+}
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
