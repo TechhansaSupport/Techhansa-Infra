@@ -79,22 +79,22 @@ export default function AboutUs() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="glass-panel p-6 rounded-2xl hover-scale text-center">
               <div className="text-3xl md:text-4xl mb-4">🏆</div>
-              <h4 className="font-bold mb-2 text-foreground">Developer of the Year (Luxury) - 2023</h4>
+              <h4 className="font-bold mb-2 text-foreground">Developer of the Year</h4>
               <p className="text-xs text-muted">Real Estate Excellence Awards</p>
             </div>
             <div className="glass-panel p-6 rounded-2xl hover-scale text-center">
               <div className="text-3xl md:text-4xl mb-4">🌍</div>
-              <h4 className="font-bold mb-2 text-foreground">Excellence in Sustainable Architecture - 2022</h4>
+              <h4 className="font-bold mb-2 text-foreground">Excellence in Sustainable Architecture</h4>
               <p className="text-xs text-muted">Global Green Building Council</p>
             </div>
             <div className="glass-panel p-6 rounded-2xl hover-scale text-center">
               <div className="text-3xl md:text-4xl mb-4">🏢</div>
-              <h4 className="font-bold mb-2 text-foreground">Best Commercial Project (Techhansa Cyber Park) - 2021</h4>
+              <h4 className="font-bold mb-2 text-foreground">Best Commercial Project</h4>
               <p className="text-xs text-muted">Asia Pacific Property Awards</p>
             </div>
             <div className="glass-panel p-6 rounded-2xl hover-scale text-center">
               <div className="text-3xl md:text-4xl mb-4">🤝</div>
-              <h4 className="font-bold mb-2 text-foreground">Most Trusted Brand in Real Estate - 2020</h4>
+              <h4 className="font-bold mb-2 text-foreground">Most Trusted Brand in Real Estate</h4>
               <p className="text-xs text-muted">Consumer Choice Awards</p>
             </div>
           </div>
