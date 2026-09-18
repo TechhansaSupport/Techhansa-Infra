@@ -6,7 +6,7 @@ export default function FeaturedProjects() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL || ''}/api/projects`)
+    fetch(`/api/projects`)
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) {

@@ -28,7 +28,7 @@ export default function ContactPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/inquiries`, {
+      const res = await fetch(`/api/inquiries`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

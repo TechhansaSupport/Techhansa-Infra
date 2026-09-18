@@ -9,7 +9,7 @@ export default function PopupModal() {
   useEffect(() => {
     const fetchBanner = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/popup-banners/active`);
+        const res = await fetch(`/api/popup-banners/active`);
         if (res.ok) {
           const data = await res.json();
           if (data && data.isActive) {

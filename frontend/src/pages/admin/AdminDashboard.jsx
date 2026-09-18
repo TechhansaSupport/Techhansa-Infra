@@ -11,7 +11,7 @@ export default function AdminDashboard() {
 
   const fetchProjects = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/projects`);
+      const res = await fetch(`/api/projects`);
       const data = await res.json();
       setProjects(data);
     } catch (err) {
@@ -25,7 +25,7 @@ export default function AdminDashboard() {
     if (!window.confirm('Are you sure you want to delete this project?')) return;
     
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/projects/${id}`, {
+      const res = await fetch(`/api/projects/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('adminToken')}`

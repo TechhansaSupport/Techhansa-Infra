@@ -12,7 +12,7 @@ export default function Hero() {
   const [selectedBudget, setSelectedBudget] = useState('');
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL || ''}/api/projects`)
+    fetch(`/api/projects`)
       .then(res => {
         if (!res.ok) throw new Error('API request failed');
         return res.json();

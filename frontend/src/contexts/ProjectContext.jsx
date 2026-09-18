@@ -6,7 +6,7 @@ export function ProjectProvider({ children }) {
   const [hasProjects, setHasProjects] = useState(true);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL || ''}/api/projects`)
+    fetch(`/api/projects`)
       .then(res => {
         if (!res.ok) throw new Error('API Request failed');
         return res.json();
