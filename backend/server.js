@@ -32,7 +32,7 @@ app.use('/api/announcement', announcementRoutes);
 app.use('/api/popup-banners', popupBannerRoutes);
 
 // Connect to MongoDB
-mongoose.connect(MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log('Connected to MongoDB');
   })
