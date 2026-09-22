@@ -4,11 +4,19 @@ export default function HomeLoans() {
   return (
     <section id="loans" className="bg-slate-50 text-foreground py-24 border-t border-slate-200">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-3xl md:text-5xl font-bold mb-6 text-foreground">Flexible Home Loans</h2>
-          <p className="text-lg text-muted">
-            We partner with top-tier financial institutions to bring you the lowest interest rates and a seamless approval process.
-          </p>
+        <div 
+          className="text-center rounded-3xl overflow-hidden relative mb-16 py-16 px-4 shadow-xl bg-fixed bg-center bg-cover"
+          style={{ backgroundImage: 'url("/images/house-pool.jpg")' }}
+        >
+          <div className="absolute inset-0 bg-white/20 z-0"></div>
+          <div className="relative z-10 max-w-2xl mx-auto">
+            <div className="bg-white/80 backdrop-blur-md rounded-[2.5rem] p-10 md:p-16 shadow-2xl border border-white/50 inline-block">
+              <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">Flexible Home Loans</h2>
+              <p className="text-lg text-slate-800 font-medium leading-relaxed">
+                We partner with top-tier financial institutions to bring you the lowest interest rates and a seamless approval process.
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">

@@ -20,7 +20,7 @@ export default function MainLayout() {
         <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-emerald/15 rounded-full blur-[100px]"></div>
       </div>
 
-      <div className="flex-1 relative z-10">
+      <div className="flex-1 relative z-20">
         <Outlet />
       </div>
       <Footer />

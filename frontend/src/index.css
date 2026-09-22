@@ -3,24 +3,36 @@
 
 @theme {
   /* Vibrant Light Theme Colors */
-  --color-navy: #ffffff; /* Re-mapped for compatibility, essentially white */
-  --color-navy-light: #f1f5f9; /* Slate 100 */
-  --color-navy-dark: #f8fafc; /* Slate 50 */
-  
-  --color-gold: #D4AF37; /* Premium Metallic Gold */
-  --color-gold-light: #F1E5AC; /* Light Gold */
-  --color-gold-dark: #AA8222; /* Darker Gold */
-  
-  --color-emerald: #10b981; /* Emerald 500 */
-  --color-emerald-light: #34d399; /* Emerald 400 */
-  
-  --color-blue: #0ea5e9; /* Sky 500 */
-  --color-blue-light: #38bdf8; /* Sky 400 */
-  
+  --color-navy: #ffffff;
+  /* Re-mapped for compatibility, essentially white */
+  --color-navy-light: #f1f5f9;
+  /* Slate 100 */
+  --color-navy-dark: #f8fafc;
+  /* Slate 50 */
+
+  --color-gold: #D4AF37;
+  /* Premium Metallic Gold */
+  --color-gold-light: #F1E5AC;
+  /* Light Gold */
+  --color-gold-dark: #AA8222;
+  /* Darker Gold */
+
+  --color-emerald: #10b981;
+  /* Emerald 500 */
+  --color-emerald-light: #34d399;
+  /* Emerald 400 */
+
+  --color-blue: #0ea5e9;
+  /* Sky 500 */
+  --color-blue-light: #38bdf8;
+  /* Sky 400 */
+
   --color-background: #ffffff;
-  --color-foreground: #334155; /* Dark Slate Gray */
-  --color-muted: #64748b; /* Light Slate Gray */
-  
+  --color-foreground: #334155;
+  /* Dark Slate Gray */
+  --color-muted: #64748b;
+  /* Light Slate Gray */
+
   --animate-fade-in: fade-in 0.8s ease-out;
   --animate-slide-up: slide-up 0.8s ease-out;
   --animate-slow-zoom: slow-zoom 20s ease-in-out infinite alternate;
@@ -29,12 +41,19 @@
 }
 
 @keyframes slow-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes shimmer {
-  100% { transform: translateX(200%); }
+  100% {
+    transform: translateX(200%);
+  }
 }
 
 body {
@@ -71,18 +90,35 @@ html {
 
 /* Micro animations */
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slide-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slow-zoom {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.1); }
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.1);
+  }
 }
 
 .hover-glow:hover {
@@ -94,4 +130,16 @@ html {
 .hover-scale:hover {
   transform: scale(1.03);
   transition: transform 0.4s ease;
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }

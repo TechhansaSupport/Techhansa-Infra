@@ -15,6 +15,8 @@ import ProjectDetail from './pages/ProjectDetail'
 import Sustainability from './pages/Sustainability'
 import ContactPage from './pages/ContactPage'
 import { PrivacyPolicy, Disclaimer } from './pages/Legal'
+import Investors from './pages/Investors'
+import MediaCenter from './pages/MediaCenter'
 import NotFound from './pages/NotFound'
 
 // Admin Pages
@@ -76,6 +78,8 @@ function App() {
           <Route path="projects" element={<ProjectsHub />} />
           <Route path="projects/:id" element={<ProjectDetail />} />
           <Route path="sustainability" element={<Sustainability />} />
+          <Route path="investors" element={<Investors />} />
+          <Route path="media" element={<MediaCenter />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="disclaimer" element={<Disclaimer />} />

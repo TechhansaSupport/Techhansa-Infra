@@ -58,8 +58,20 @@ export default function ContactPage() {
   return (
     <div className="pt-40 pb-24 min-h-screen">
       <Navbar />
+      {/* Header */}
+      <section 
+        className="py-24 relative z-10 bg-fixed bg-center bg-cover mb-16"
+        style={{ backgroundImage: 'url("/images/contact-hero.jpg")' }}
+      >
+        <div className="absolute inset-0 bg-white/20 z-0"></div>
+        <div className="container mx-auto px-4 md:px-8 text-center max-w-4xl relative z-10">
+          <div className="bg-white/80 backdrop-blur-md rounded-[2.5rem] p-10 md:p-16 shadow-2xl border border-white/50 inline-block">
+             <h1 className="text-3xl md:text-5xl font-bold text-foreground">Contact Us</h1>
+          </div>
+        </div>
+      </section>
+
       <div className="container mx-auto px-4 md:px-8 max-w-6xl">
-        <h1 className="text-3xl md:text-5xl font-bold mb-12 text-center text-blue drop-shadow-sm">Contact Us</h1>
 
         <div className="grid lg:grid-cols-3 gap-12 mb-16">
           {/* Contact Information */}
@@ -86,14 +98,14 @@ export default function ContactPage() {
           {/* Contact Form */}
           <div className="lg:col-span-2 glass-panel p-10 rounded-3xl relative">
             {isSubmitted && (
-              <div className="absolute inset-0 bg-white/90 rounded-3xl z-10 flex flex-col items-center justify-center text-center p-8 backdrop-blur-sm border border-slate-200">
+              <div className="absolute inset-0 bg-white/70 rounded-3xl z-10 flex flex-col items-center justify-center text-center p-8 backdrop-blur-md border border-slate-200">
                 <div className="w-16 h-16 bg-emerald/20 text-emerald rounded-full flex items-center justify-center text-3xl mb-4 shadow-[0_0_15px_rgba(16,185,129,0.3)]">✓</div>
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Message Sent!</h3>
                 <p className="text-muted">Thank you for reaching out. Our team will get back to you shortly.</p>
               </div>
             )}
 
-            <h2 className="text-3xl font-bold mb-8 text-foreground">Request a Consultation</h2>
+            <h2 className="text-3xl font-bold mb-8 text-foreground">Send an Enquiry</h2>
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>

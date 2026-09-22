@@ -8,7 +8,7 @@ export default function Sell() {
     e.preventDefault();
     setSubmitStatus('loading');
     try {
-      const response = await fetch(`/inquiries`, {
+      const response = await fetch(`/api/inquiries`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -29,29 +29,32 @@ export default function Sell() {
   return (
     <section id="contact" className="bg-white text-foreground py-24">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="bg-slate-50 border border-slate-200 shadow-lg rounded-3xl p-12 lg:p-20 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-blue opacity-10 blur-[100px] rounded-full" />
+        <div 
+          className="border border-slate-200 shadow-lg rounded-3xl p-12 lg:p-20 relative overflow-hidden bg-fixed bg-center bg-cover"
+          style={{ backgroundImage: 'url("/images/colony-gate.jpg")' }}
+        >
+          <div className="absolute inset-0 bg-white/20 z-0"></div>
           
-          <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+          <div className="relative z-10 bg-white/80 backdrop-blur-md rounded-[2.5rem] p-10 lg:p-16 shadow-2xl border border-white/50 grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl lg:text-3xl md:text-5xl font-bold mb-6 text-blue drop-shadow-sm">Experience Luxury Living.</h2>
-              <p className="text-lg text-muted mb-8 max-w-md">
+              <h2 className="text-3xl md:text-4xl lg:text-3xl md:text-5xl font-bold mb-6 text-foreground">Experience Luxury Living.</h2>
+              <p className="text-lg text-slate-800 font-medium mb-8 max-w-md leading-relaxed">
                 Discover our portfolio of premium residential and commercial spaces. Leave your details below and our property advisors will get in touch with you.
               </p>
               <ul className="space-y-4 mb-8">
-                <li className="flex items-center gap-3 text-foreground">
+                <li className="flex items-center gap-3 text-slate-700 font-medium">
                   <div className="w-2 h-2 rounded-full bg-blue shadow-[0_0_8px_rgba(14,165,233,0.3)]" /> Exclusive Preview Access
                 </li>
-                <li className="flex items-center gap-3 text-foreground">
+                <li className="flex items-center gap-3 text-slate-700 font-medium">
                   <div className="w-2 h-2 rounded-full bg-blue shadow-[0_0_8px_rgba(14,165,233,0.3)]" /> Guided Site Visits
                 </li>
-                <li className="flex items-center gap-3 text-foreground">
+                <li className="flex items-center gap-3 text-slate-700 font-medium">
                   <div className="w-2 h-2 rounded-full bg-blue shadow-[0_0_8px_rgba(14,165,233,0.3)]" /> Dedicated Relationship Manager
                 </li>
               </ul>
             </div>
-            <div className="bg-white/90 backdrop-blur-sm border border-slate-200 shadow-xl rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-6 text-foreground">Register Your Interest</h3>
+            <div className="bg-white/70 backdrop-blur-md border border-slate-200 shadow-xl rounded-2xl p-8">
+              <h3 className="text-2xl font-bold mb-6 text-foreground drop-shadow-sm">Register Your Interest</h3>
               {submitStatus === 'success' ? (
                 <div className="bg-emerald-100 border border-emerald-200 text-emerald-600 p-6 rounded-2xl text-center">
                   <h4 className="text-xl font-bold mb-2">Request Received!</h4>

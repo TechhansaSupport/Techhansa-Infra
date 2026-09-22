@@ -11,6 +11,8 @@ export default function Navbar() {
     { path: '/', label: 'Home', exact: true },
     { path: '/about', label: 'About Us' },
     ...(hasProjects ? [{ path: '/projects', label: 'Projects' }] : []),
+    { path: '/investors', label: 'Investors' },
+    { path: '/media', label: 'Insight' },
     { path: '/sustainability', label: 'Sustainability' },
     { path: '/contact', label: 'Contact' },
   ];

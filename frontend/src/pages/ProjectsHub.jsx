@@ -144,6 +144,36 @@ export default function ProjectsHub() {
             </div>
           </div>
 
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 hover:shadow-md transition-shadow">
+              <h3 className="text-xl font-bold mb-3 text-emerald">Residential</h3>
+              <p className="text-sm text-muted mb-4">The Sanctuary You Deserve. Elevate your everyday living with luxury apartments and smart homes.</p>
+              <ul className="text-sm text-foreground space-y-2">
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-emerald"></div> 5-tier security systems</li>
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-emerald"></div> World-class amenities</li>
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-emerald"></div> Sustainable living spaces</li>
+              </ul>
+            </div>
+            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 hover:shadow-md transition-shadow">
+              <h3 className="text-xl font-bold mb-3 text-blue">Commercial</h3>
+              <p className="text-sm text-muted mb-4">Business Addresses of the Future. Grade-A workspaces and high-street retail hubs.</p>
+              <ul className="text-sm text-foreground space-y-2">
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue"></div> Strategic CBD Locations</li>
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue"></div> Future-Proof Technology</li>
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue"></div> High footfall retail zones</li>
+              </ul>
+            </div>
+            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 hover:shadow-md transition-shadow">
+              <h3 className="text-xl font-bold mb-3 text-gold">Plotted</h3>
+              <p className="text-sm text-muted mb-4">The Perfect Canvas. Premium plots in highly secure, gated communities.</p>
+              <ul className="text-sm text-foreground space-y-2">
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-gold"></div> Ready Infrastructure</li>
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-gold"></div> Master Community Perks</li>
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-gold"></div> Freedom to design</li>
+              </ul>
+            </div>
+          </div>
+
           <div className="flex flex-wrap gap-4">
             <select 
               value={statusFilter}
