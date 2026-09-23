@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 
 export default function AboutUs() {
   return (
-    <div className="pt-32 pb-24 text-foreground min-h-screen">
+    <div className="pt-28 pb-24 text-foreground min-h-screen">
       <Navbar />
       
       {/* Hero Section */}

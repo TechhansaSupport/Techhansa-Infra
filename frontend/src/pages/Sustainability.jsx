@@ -4,7 +4,7 @@ import { Droplet, Sun, Leaf, Award } from 'lucide-react';
 
 export default function Sustainability() {
   return (
-    <div className="pt-32 pb-24 text-foreground min-h-screen">
+    <div className="pt-28 pb-24 text-foreground min-h-screen">
       <Navbar />
       <section 
         className="py-24 relative z-10 bg-fixed bg-center bg-cover"

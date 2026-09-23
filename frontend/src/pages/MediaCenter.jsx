@@ -62,7 +62,7 @@ export default function MediaCenter() {
     : articles.filter(a => a.category === activeFilter);
 
   return (
-    <div className="pt-32 pb-20 text-foreground min-h-screen relative">
+    <div className="pt-28 pb-20 text-foreground min-h-screen relative">
       <Navbar />
       {/* Header */}
       <section 

@@ -23,7 +23,7 @@ export default function Investors() {
   };
 
   return (
-    <div className="pt-32 pb-20 text-foreground min-h-screen">
+    <div className="pt-28 pb-20 text-foreground min-h-screen">
       <Navbar />
       {/* Header */}
       <section 

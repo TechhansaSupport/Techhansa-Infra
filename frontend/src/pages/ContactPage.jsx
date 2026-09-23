@@ -56,7 +56,7 @@ export default function ContactPage() {
     }
   };
   return (
-    <div className="pt-40 pb-24 min-h-screen">
+    <div className="pt-28 pb-24 min-h-screen">
       <Navbar />
       {/* Header */}
       <section 

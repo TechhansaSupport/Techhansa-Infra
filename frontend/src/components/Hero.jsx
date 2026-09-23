@@ -54,7 +54,7 @@ export default function Hero() {
     return () => clearInterval(bgTimer);
   }, []);
   return (
-    <section id="home" className="relative min-h-screen flex flex-col overflow-hidden bg-slate-50">
+    <section id="home" className="relative min-h-[calc(100vh-7rem)] mt-28 flex flex-col overflow-hidden bg-slate-50">
       {/* Background Images */}
       <div 
         className="absolute inset-0 z-0"
@@ -74,7 +74,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-white/30 z-10" />
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 md:px-8 pt-32 pb-16 flex-1 flex flex-col lg:flex-row items-center justify-between gap-12">
+      <div className="relative z-10 container mx-auto px-4 md:px-8 pt-16 pb-16 flex-1 flex flex-col lg:flex-row items-center justify-between gap-12">
 
         {/* Left Content */}
         <div className="max-w-2xl text-foreground animate-fade-in">
@@ -137,7 +137,7 @@ export default function Hero() {
                 <img src="/images/colony-gate.jpg" alt="Property" className="w-full h-full object-cover" />
               </div>
               <div>
-                <h3 className="text-3xl font-bold mb-1 text-blue">12.8K+</h3>
+                <h3 className="text-3xl font-bold mb-1 text-blue">1.2K+</h3>
                 <p className="text-sm text-muted leading-tight">World wide satisfied customer</p>
               </div>
             </div>
@@ -147,7 +147,7 @@ export default function Hero() {
                 <img src="/images/lake-apartment.jpg" alt="Projects" className="w-full h-full object-cover" />
               </div>
               <div>
-                <h3 className="text-3xl font-bold mb-1 text-blue">200+</h3>
+                <h3 className="text-3xl font-bold mb-1 text-blue">20+</h3>
                 <p className="text-sm text-muted leading-tight">Award winning properties</p>
               </div>
             </div>

@@ -6,7 +6,7 @@ export default function Testimonials() {
     {
       text: "We visited over 20 properties before walking into a Techhansa site. The difference in professionalism, design quality, and transparency was night and day. They didn't just sell us a house; they welcomed us into a community.",
       author: "Priya & Rahul M.",
-      role: "Residents at Techhansa Heights"
+      role: "Residents"
     },
     {
       text: "As a first-time commercial investor, I was nervous. The Techhansa team held my hand through the entire legal and financial process. My retail space was delivered 2 months ahead of schedule!",

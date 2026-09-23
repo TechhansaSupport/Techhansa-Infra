@@ -50,10 +50,9 @@ function AnimatedCounter({ end, duration = 2000, suffix = '' }) {
 
 export default function Milestones() {
   const stats = [
-    { end: 10, suffix: '+', label: 'Years of Unshakable Trust' },
-    { end: 10000, suffix: '+', label: 'Happy Families' },
-    { end: 50, suffix: '+', label: 'Landmark Projects' },
-    { end: 5, suffix: 'M+', label: 'Sq. Ft. Developed' }
+    { end: 2, suffix: '+', label: 'Years of Unshakable Trust' },
+    { end: 2000, suffix: '+', label: 'Happy Families' },
+    { end: 10, suffix: '+', label: 'Landmark Projects' }
   ];
 
   return (
@@ -68,7 +67,7 @@ export default function Milestones() {
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">The Techhansa Trust Metrics</h2>
             <p className="text-lg text-slate-800 font-medium leading-relaxed">We let our numbers speak for our dedication to our clients. From our first foundation to our latest skyline, we build with uncompromising quality.</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             {stats.map((stat, i) => (
               <div key={i}>
                 <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-blue mb-4">
